@@ -1,15 +1,23 @@
-import Game from "./Game";
-import Leaderboard from "./Leaderboard";
-import Login from "./Auth/Login";
-import Profile from "./Profile";
-import Register from "./Auth/Register";
+import HomePage from "./HomePage";
+import GamePage from "./GamePage";
+import LeaderboardPage from "./LeaderboardPage";
+import LoginPage from "./LoginPage";
+import ProfilePage from "./ProfilePage";
+import RegisterPage from "./RegisterPage";
+import ForumPage from "./ForumPage";
+import NotFoundPage from "./NotFoundPage";
+import TopicPage from "./ForumPage/[id]";
 import App from "./App";
 
 export {
-  Game,
-  Leaderboard,
-  Login,
-  Profile,
-  Register,
+  HomePage,
+  GamePage,
+  LeaderboardPage,
+  LoginPage,
+  ProfilePage,
+  RegisterPage,
+  ForumPage,
+  TopicPage,
+  NotFoundPage,
   App,
 }
