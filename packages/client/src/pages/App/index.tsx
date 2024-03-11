@@ -1,6 +1,6 @@
 import '@/styles/index.scss'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Navigation from '@/components/Navigation'
+import { Navigation } from '@/components'
 import {
   ForumPage,
   GamePage,
@@ -10,23 +10,24 @@ import {
   NotFoundPage,
   ProfilePage,
   RegisterPage,
-  TopicPage
+  TopicPage,
 } from '@/pages'
 
 const App = () => {
-  return (<main>
+  return (
+    <main>
       <BrowserRouter>
         <Navigation />
         <Routes>
-          <Route path='/' element={<HomePage />} />
-          <Route path='login' element={<LoginPage />} />
-          <Route path='registration' element={<RegisterPage />} />
-          <Route path='profile' element={<ProfilePage />} />
-          <Route path='game' element={<GamePage />} />
-          <Route path='leaderboard' element={<LeaderboardPage />} />
-          <Route path='forum' element={<ForumPage />} />
-          <Route path='forum/:topicId' element={<TopicPage />} />
-          <Route path='*' element={<NotFoundPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="login" element={<LoginPage />} />
+          <Route path="registration" element={<RegisterPage />} />
+          <Route path="profile" element={<ProfilePage />} />
+          <Route path="game" element={<GamePage />} />
+          <Route path="leaderboard" element={<LeaderboardPage />} />
+          <Route path="forum" element={<ForumPage />} />
+          <Route path="forum/:topicId" element={<TopicPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
     </main>

@@ -1,5 +1,5 @@
 import AuthService from '@/services/auth'
-import { APIError, SignupResponse } from '@/typings/responses/auth'
+import { APIError, SignupResponse } from '@/typings'
 import { AxiosError } from 'axios'
 import { useEffect, useState } from 'react'
 
