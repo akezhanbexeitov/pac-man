@@ -1,7 +1,10 @@
 import { Button, Field } from '@/components/ui'
 import styles from './index.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 const LoginPage = () => {
+  const navigate = useNavigate()
+
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault()
     console.log('Submitted')
@@ -14,12 +17,15 @@ const LoginPage = () => {
           <h1>Вход</h1>
 
           <form onSubmit={handleSubmit} className={styles['login__form']}>
-            <Field />
-            <Field />
+            <Field label="Логин" type="text" />
+            <Field label="Пароль" type="password" />
             <Button variant="primary">Авторизоваться</Button>
           </form>
 
-          <Button variant="secondary" type="button">
+          <Button
+            variant="secondary"
+            type="button"
+            onClick={() => navigate('/registration')}>
             Нет аккаунта?
           </Button>
         </main>

@@ -1,8 +1,20 @@
-// Это компонент для ввода текста, который можно использовать в формах
-// Сделать наподобие Button, нужно обязательно включить сюда Label и Input, можно сделать как отдельные компоненты или как удобно
+import { FC, HTMLInputTypeAttribute } from 'react'
+import styles from './index.module.scss'
 
-const Field = () => {
-  return <div>Field</div>
+interface Props {
+  label: string
+  type: HTMLInputTypeAttribute
+}
+
+const Field: FC<Props> = ({ label, type }) => {
+  return (
+    <>
+      <label className={styles['field__label']} htmlFor={label}>
+        <span className={styles['field__text']}>{label}</span>
+        <input className={styles['field__input']} id={label} type={type} />
+      </label>
+    </>
+  )
 }
 
 export default Field

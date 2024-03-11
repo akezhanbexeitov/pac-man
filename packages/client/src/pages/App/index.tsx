@@ -11,19 +11,20 @@ import {
   RegisterPage,
   TopicPage,
 } from '@/pages'
+import { ROUTES } from '@/typings'
 
 const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="login" element={<LoginPage />} />
-        <Route path="registration" element={<RegisterPage />} />
-        <Route path="profile" element={<ProfilePage />} />
-        <Route path="game" element={<GamePage />} />
-        <Route path="leaderboard" element={<LeaderboardPage />} />
-        <Route path="forum" element={<ForumPage />} />
-        <Route path="forum/:topicId" element={<TopicPage />} />
+        <Route path={ROUTES.HOME} element={<HomePage />} />
+        <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+        <Route path={ROUTES.REGISTRATION} element={<RegisterPage />} />
+        <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
+        <Route path={ROUTES.GAME} element={<GamePage />} />
+        <Route path={ROUTES.LEADERBOARD} element={<LeaderboardPage />} />
+        <Route path={ROUTES.FORUM} element={<ForumPage />} />
+        <Route path={`${ROUTES.FORUM}/:topicId`} element={<TopicPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

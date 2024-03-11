@@ -1,4 +1,4 @@
-import { UserDTO, User } from "./types";
+import { UserDTO, User, ROUTES } from "./types";
 import { SignupData, SignupResponse, SigninData } from "./responses/auth";
 import { APIError } from "./responses/error"
 
@@ -9,4 +9,8 @@ export type {
   SignupResponse,
   SigninData,
   APIError,
+}
+
+export {
+  ROUTES
 }
