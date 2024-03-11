@@ -1,0 +1,40 @@
+.btn {
+  &-primary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 12px 24px;
+    box-shadow: 2px 2px 4px 0px #FAFAFA inset;
+    background-color: var(--yellow-color);
+    border-radius: 34px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    font-size: 12px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+
+  &-secondary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    border: none;
+    padding: 12px 24px;
+    box-shadow: 3px 3px 2.299999952316284px 0px #FFFFFF40 inset;
+    background-color: var(--black-color);
+    color: var(--white-color);
+    border-radius: 34px;
+    cursor: pointer;
+    transition: opacity 0.3s ease-in-out;
+    font-size: 12px;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}

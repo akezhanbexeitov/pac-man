@@ -16,10 +16,12 @@ const LoginPage = () => {
           <form onSubmit={handleSubmit} className={styles['login__form']}>
             <Field />
             <Field />
-            <Button type="primary">Авторизоваться</Button>
+            <Button variant="primary">Авторизоваться</Button>
           </form>
 
-          <Button type="secondary">Нет аккаунта?</Button>
+          <Button variant="secondary" type="button">
+            Нет аккаунта?
+          </Button>
         </main>
       </div>
     </div>
