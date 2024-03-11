@@ -1,15 +1,15 @@
-import { FC } from 'react'
+import { ButtonHTMLAttributes, FC } from 'react'
 import classnames from 'classnames'
+import styles from './index.module.scss'
 
-interface Props extends React.HTMLProps<HTMLButtonElement> {
-  type: 'primary' | 'secondary' | 'danger'
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant: 'primary' | 'secondary' | 'danger'
 }
 
-const Button: FC<Props> = ({ type, children, ...rest }) => {
+const Button: FC<Props> = ({ variant, children, ...rest }) => {
   const btnClass = classnames({
-    'btn-primary': type === 'primary',
-    'btn-secondary': type === 'secondary',
-    'btn-danger': type === 'danger',
+    [styles['btn-primary']]: variant === 'primary',
+    [styles['btn-secondary']]: variant === 'secondary',
   })
 
   return (

@@ -1,0 +1,20 @@
+.field {
+  &__label {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  &__text {
+    font-size: 8px;
+    color: var(--grey-color);
+  }
+
+  &__input {
+    padding: 8px 12px;
+    border-radius: 30px;
+    outline: none;
+    border: none;
+    font-size: 8px;
+  }
+}

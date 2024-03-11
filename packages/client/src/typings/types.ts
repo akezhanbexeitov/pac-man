@@ -19,3 +19,13 @@ export type User = {
   phone: string;
   email: string;
 };
+
+export enum ROUTES {
+  HOME = '/',
+  LOGIN = '/login',
+  REGISTRATION = '/registration',
+  PROFILE = '/profile',
+  GAME = '/game',
+  LEADERBOARD = '/leaderboard',
+  FORUM = '/forum',
+}
