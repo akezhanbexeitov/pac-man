@@ -7,10 +7,11 @@ import { useState } from 'react'
 import AuthService from '@/services/auth'
 import { AxiosError } from 'axios'
 import ErrorText from '@/components/ui/ErrorText'
+import Loader from '@/components/ui/Loader'
 
 const LoginPage = () => {
-  const [isLoading, setIsLoading] = useState<boolean>(false)
   const [error, setError] = useState<APIError | null>(null)
+  const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const navigate = useNavigate()
   const { signin } = AuthService()
@@ -63,8 +64,8 @@ const LoginPage = () => {
               value={formik.values.password}
             />
             {error && <ErrorText text={error.reason} />}
-            <Button variant="primary" type="submit">
-              Авторизоваться
+            <Button variant="primary" type="submit" disabled={isLoading}>
+              {isLoading ? <Loader /> : 'Авторизоваться'}
             </Button>
           </form>
 
