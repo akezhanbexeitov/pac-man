@@ -7,6 +7,7 @@ import { Button, Field } from '@/components/ui'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import ErrorText from '@/components/ui/ErrorText'
+import Loader from '@/components/ui/Loader'
 
 const RegisterPage = () => {
   const [error, setError] = useState<APIError | null>(null)
@@ -113,8 +114,8 @@ const RegisterPage = () => {
               value={formik.values.repeat_password}
             />
             {error && <ErrorText text={error.reason} />}
-            <Button variant="primary" type="submit">
-              Авторизоваться
+            <Button variant="primary" type="submit" disabled={isLoading}>
+              {isLoading ? <Loader /> : 'Авторизоваться'}
             </Button>
           </form>
 

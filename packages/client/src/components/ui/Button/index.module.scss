@@ -16,6 +16,12 @@
     &:hover {
       opacity: 0.8;
     }
+
+    &:disabled {
+      background-color: var(--grey-color);
+      cursor: not-allowed;
+      padding: 10px 24px;
+    }
   }
 
   &-secondary {
@@ -35,6 +41,11 @@
 
     &:hover {
       opacity: 0.8;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
   }
 }
