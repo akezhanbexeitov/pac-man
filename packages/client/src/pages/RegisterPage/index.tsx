@@ -9,55 +9,40 @@ import { useFormik } from 'formik'
 import ErrorText from '@/components/ui/ErrorText'
 
 const RegisterPage = () => {
-  const [data, setData] = useState<SignupResponse | null>(null)
   const [error, setError] = useState<APIError | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const { signup } = AuthService()
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   const request = async () => {
-  //     try {
-  //       setIsLoading(true)
-
-  //       const response = await signup({
-  //         first_name: 'John',
-  //         second_name: 'Doe',
-  //         phone: '+77777777777',
-  //         login: 'john_doe',
-  //         email: 'john@gmail.com',
-  //         password: 'password',
-  //       })
-
-  //       setData(response as SignupResponse)
-  //     } catch (error: unknown) {
-  //       if (error instanceof AxiosError) {
-  //         if (error.response?.data) {
-  //           setError(error.response.data)
-  //         }
-  //       }
-  //     } finally {
-  //       setIsLoading(false)
-  //     }
-  //   }
-
-  //   request()
-  // }, [])
-
   const formik = useFormik({
     initialValues: {
       login: '',
       email: '',
       first_name: '',
+      second_name: '',
       phone: '',
       password: '',
       repeat_password: '',
     },
-    onSubmit: values => {
+    onSubmit: async values => {
       if (values.password !== values.repeat_password) {
         setError({ reason: 'Пароли не совпадают' })
         return
+      }
+
+      try {
+        setIsLoading(true)
+        await signup(values)
+        navigate(ROUTES.HOME)
+      } catch (error: unknown) {
+        if (error instanceof AxiosError) {
+          if (error.response?.data) {
+            setError(error.response.data)
+          }
+        }
+      } finally {
+        setIsLoading(false)
       }
     },
   })
@@ -96,6 +81,14 @@ const RegisterPage = () => {
               value={formik.values.first_name}
             />
             <Field
+              label="Фамилия"
+              type="text"
+              placeholder="Фамилия"
+              name="second_name"
+              handleChange={formik.handleChange}
+              value={formik.values.second_name}
+            />
+            <Field
               label="Телефон"
               type="text"
               placeholder="Телефон"
@@ -120,7 +113,9 @@ const RegisterPage = () => {
               value={formik.values.repeat_password}
             />
             {error && <ErrorText text={error.reason} />}
-            <Button variant="primary">Авторизоваться</Button>
+            <Button variant="primary" type="submit">
+              Авторизоваться
+            </Button>
           </form>
 
           <Button
