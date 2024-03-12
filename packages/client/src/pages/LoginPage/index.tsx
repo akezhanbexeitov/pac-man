@@ -1,15 +1,41 @@
 import { Button, Field } from '@/components/ui'
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
-import { ROUTES } from '@/typings'
+import { APIError, ROUTES } from '@/typings'
+import { useFormik } from 'formik'
+import { useState } from 'react'
+import AuthService from '@/services/auth'
+import { AxiosError } from 'axios'
+import ErrorText from '@/components/ui/ErrorText'
 
 const LoginPage = () => {
-  const navigate = useNavigate()
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [error, setError] = useState<APIError | null>(null)
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault()
-    console.log('Submitted')
-  }
+  const navigate = useNavigate()
+  const { signin } = AuthService()
+
+  const formik = useFormik({
+    initialValues: {
+      login: '',
+      password: '',
+    },
+    onSubmit: async values => {
+      try {
+        setIsLoading(true)
+        await signin(values)
+        navigate(ROUTES.HOME)
+      } catch (error) {
+        if (error instanceof AxiosError) {
+          if (error.response?.data) {
+            setError(error.response.data)
+          }
+        }
+      } finally {
+        setIsLoading(false)
+      }
+    },
+  })
 
   return (
     <div className={styles['login__layout']}>
@@ -17,10 +43,29 @@ const LoginPage = () => {
         <main className={styles['login__card']}>
           <h1>Вход</h1>
 
-          <form onSubmit={handleSubmit} className={styles['login__form']}>
-            <Field label="Логин" type="text" placeholder="Логин" />
-            <Field label="Пароль" type="password" placeholder="Пароль" />
-            <Button variant="primary">Авторизоваться</Button>
+          <form
+            onSubmit={formik.handleSubmit}
+            className={styles['login__form']}>
+            <Field
+              label="Логин"
+              type="text"
+              placeholder="Логин"
+              name="login"
+              handleChange={formik.handleChange}
+              value={formik.values.login}
+            />
+            <Field
+              label="Пароль"
+              type="password"
+              placeholder="Пароль"
+              name="password"
+              handleChange={formik.handleChange}
+              value={formik.values.password}
+            />
+            {error && <ErrorText text={error.reason} />}
+            <Button variant="primary" type="submit">
+              Авторизоваться
+            </Button>
           </form>
 
           <Button
