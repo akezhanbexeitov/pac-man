@@ -6,6 +6,7 @@ import styles from './index.module.scss'
 import { Button, Field } from '@/components/ui'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
+import ErrorText from '@/components/ui/ErrorText'
 
 const RegisterPage = () => {
   const [data, setData] = useState<SignupResponse | null>(null)
@@ -54,7 +55,10 @@ const RegisterPage = () => {
       repeat_password: '',
     },
     onSubmit: values => {
-      console.log(values)
+      if (values.password !== values.repeat_password) {
+        setError({ reason: 'Пароли не совпадают' })
+        return
+      }
     },
   })
 
@@ -115,6 +119,7 @@ const RegisterPage = () => {
               handleChange={formik.handleChange}
               value={formik.values.repeat_password}
             />
+            {error && <ErrorText text={error.reason} />}
             <Button variant="primary">Авторизоваться</Button>
           </form>
 
