@@ -1,0 +1,38 @@
+.item {
+    min-height: 100px;
+    width: 100%;
+    background-color: var(--black-color);
+    box-shadow: 6px 6px 2.299999952316284px 0px #ffffff40 inset;
+    border-radius: 15px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    &__info {
+    
+    }
+    &__name, {
+        font-size: 12px;
+        line-height: 26px;
+        color: var(--white-color);
+    }
+    &__coments {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__label {
+        margin-top: 7px;
+        font-size: 16px;
+        line-height: 24px;
+        color: var(--white-color);
+    }
+    
+    &__volume {
+        font-size: 32px;
+        line-height: 34px;
+        color: var(--yellow-color);
+    }
+}

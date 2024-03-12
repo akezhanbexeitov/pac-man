@@ -7,10 +7,36 @@
 
 // ===== VARIABLES =====
 :root {
-  font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
-  --yellow-color: #FFD301;
-  --red-color: #FF0000;
-  --black-color: #000000;
-  --white-color: #FFFFFF;
-  --grey-color: #DBE0EC;
+    font-family: "Press Start 2P", Arial, Helvetica, sans-serif;
+    --yellow-color: #ffd301;
+    --red-color: #f00;
+    --black-color: #000;
+    --white-color: #fff;
+    --grey-color: #dbe0ec;
+}
+.customScroll {
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
+    
+    &::-webkit-scrollbar-track {
+
+    }
+    
+    &::-webkit-scrollbar-thumb {
+        -webkit-border-radius: 14px;
+        border-radius: 14px;
+        background-color: var(--black-color);
+        box-shadow: 3px 3px 2.299999952316284px 0 #ffffff40 inset;
+    }
+    
+    &::-webkit-resizer {
+        background-repeat: no-repeat;
+        width: 12px;
+        height: 0;
+    }
+    
+    &::-webkit-scrollbar {
+        width: 12px;
+    }
 }
