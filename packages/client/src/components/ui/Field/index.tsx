@@ -6,9 +6,19 @@ interface Props {
   label: string
   type: HTMLInputTypeAttribute
   placeholder: string
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  name: string
+  value: string
 }
 
-const Field: FC<Props> = ({ label, type, placeholder }) => {
+const Field: FC<Props> = ({
+  label,
+  type,
+  placeholder,
+  handleChange,
+  name,
+  value,
+}) => {
   return (
     <>
       <label className={styles['field__label']} htmlFor={label}>
@@ -19,6 +29,9 @@ const Field: FC<Props> = ({ label, type, placeholder }) => {
             className={styles['field__input']}
             format="+7 (###) ### ####"
             placeholder={placeholder}
+            name={name}
+            onChange={handleChange}
+            value={value}
           />
         ) : (
           <input
@@ -26,6 +39,9 @@ const Field: FC<Props> = ({ label, type, placeholder }) => {
             id={label}
             type={type}
             placeholder={placeholder}
+            name={name}
+            onChange={handleChange}
+            value={value}
           />
         )}
       </label>
