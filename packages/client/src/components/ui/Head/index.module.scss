@@ -1,24 +1,33 @@
-
 .head {
     display: flex;
-    width: 100%;
     justify-content: center;
-    align-items: center;
-    height: 62px;
     position: relative;
-    &__title{
+    padding: 30px 0;
+
+    &__title {
         font-size: 20px;
         line-height: 20px;
     }
-    &__back{
+
+    &__back {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         position: absolute;
+        top: 50%;
         left: 0;
-        top: 0;
         border: none;
-        background: none;
-        font-size: 40px;
-        line-height: 40px;
+        background-color: transparent;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        transform: translateY(-50%) rotate(180deg);
+        transform-origin: center;
         cursor: pointer;
+        transition: transform 0.3s ease-in-out;
+        
+        &:hover {
+            transform: translateX(-10px) translateY(-50%) rotate(180deg);
+        }
     }
 }
-
