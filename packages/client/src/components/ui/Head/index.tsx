@@ -3,7 +3,7 @@ import { FC } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 interface Props {
-  label: string
+  label?: string
   route: string
 }
 

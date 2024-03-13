@@ -8,10 +8,10 @@ interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const Button: FC<Props> = ({ variant, className, children, ...rest }) => {
-  const btnClass = classnames({
+  const btnClass = {
     [styles['btn-primary']]: variant === 'primary',
     [styles['btn-secondary']]: variant === 'secondary'
-  })
+  }
   
   return (
     <button className={classnames(btnClass, className)} {...rest}>

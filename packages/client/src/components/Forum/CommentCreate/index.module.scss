@@ -1,0 +1,33 @@
+.comment {
+    box-shadow: inset 6px 6px 2px 0 rgba(255, 255, 255, 0.25);
+    background-color: var(--black-color);
+    padding: 16px;
+    border-radius: 14px;
+    &__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__name, &__date {
+        font-size: 12px;
+        line-height: 158%;
+        color: var(--yellow-color);
+    }
+    &__textarea{
+        padding: 12px;
+        box-sizing: border-box;
+        width: 100%;
+        resize: none;
+        margin-top: 10px;
+    }
+    &__btnBlock{
+        margin-top: 15px;
+        display: flex;
+        gap: 15px;
+        justify-content: flex-end;
+    }
+    &__btnSend{}
+    &__btnCancel{
+        color: var(--red-color);
+    }
+}
