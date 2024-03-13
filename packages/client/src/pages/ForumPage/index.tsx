@@ -1,7 +1,7 @@
 import styles from './index.module.scss'
 import { Button, Head, Modal } from '@/components/ui'
 import { ROUTES } from '@/typings'
-import classnames from 'classnames'
+import cn from 'classnames'
 import { ModalCreate, Topic } from '@/components'
 import { forums } from '@/pages/ForumPage/forumMock'
 import { useState } from 'react'
@@ -15,7 +15,7 @@ const ForumPage = () => {
         <div className={styles.forum}>
           <Head label="Форум" route={ROUTES.HOME} />
           <div className={styles.forum__wrapper}>
-            <div className={classnames(styles.forum__block, 'customScroll')}>
+            <div className={cn(styles.forum__block, 'customScroll')}>
               {forums.map(item => (
                 <Topic
                   name={item.owner}
