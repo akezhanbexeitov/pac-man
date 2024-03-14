@@ -1,19 +1,13 @@
 import { createPortal } from 'react-dom'
-import { FC, ReactNode, useEffect, useState } from 'react'
+import { FC, ReactNode, useEffect } from 'react'
 import styles from './Modal.module.scss'
-import cn from 'classnames'
-import ModalOverlay from '@/components/ui/Modal/ModalOverlay'
 
 interface ModalProps {
-  children: ReactNode;
-  onClose: () => void;
-  isOpen: boolean;
+  children: ReactNode
+  onClose: () => void
 }
 
-const Modal: FC<ModalProps> = ({ children, onClose, isOpen }) => {
-  const [mounted, setMounted] = useState(false)
-  
-  
+const Modal: FC<ModalProps> = ({ children, onClose }) => {
   const keydownHandler = ({ key }: KeyboardEvent) => {
     switch (key) {
       case 'Escape':
@@ -22,25 +16,19 @@ const Modal: FC<ModalProps> = ({ children, onClose, isOpen }) => {
       default:
     }
   }
-  
+
   useEffect(() => {
     document.addEventListener('keydown', keydownHandler)
     return () => document.removeEventListener('keydown', keydownHandler)
-  })
-  useEffect(() => {
-    setMounted(true)
   }, [])
-  
-  return mounted && isOpen
-    ? createPortal(
-      <>
-        <ModalOverlay onClose={onClose} />
-        <div className={cn(styles.modal)}>
-          {children}
-        </div>
-      </>,
-      document.body
-    )
-    : null
+
+  return createPortal(
+    <div className={styles.modal__overlay} onClick={onClose}>
+      <div className={styles.modal} onClick={e => e.stopPropagation()}>
+        {children}
+      </div>
+    </div>,
+    document.body
+  )
 }
 export default Modal
