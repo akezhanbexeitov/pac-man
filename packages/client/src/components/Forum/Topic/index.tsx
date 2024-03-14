@@ -14,7 +14,7 @@ const Topic: FC<Props> = ({ name, label, comments, id }) => {
   const navigate = useNavigate()
 
   return (
-    <div
+    <li
       className={styles.item}
       onClick={() => navigate(ROUTES.FORUM + `/${id}`, { state: { id: id } })}>
       <div className={styles.item__info}>
@@ -25,7 +25,7 @@ const Topic: FC<Props> = ({ name, label, comments, id }) => {
         <h4 className={styles.item__name}>Комментов</h4>
         <span className={styles.item__volume}>{comments}</span>
       </div>
-    </div>
+    </li>
   )
 }
 

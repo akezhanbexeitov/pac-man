@@ -15,7 +15,7 @@ const ForumPage = () => {
         <div className={styles.forum}>
           <Head label="Форум" route={ROUTES.HOME} />
           <div className={styles.forum__wrapper}>
-            <div className={cn(styles.forum__block, 'customScroll')}>
+            <ul className={cn(styles.forum__block, 'customScroll')}>
               {forums.map(item => (
                 <Topic
                   name={item.owner}
@@ -25,19 +25,23 @@ const ForumPage = () => {
                   id={item.id}
                 />
               ))}
-            </div>
+            </ul>
           </div>
         </div>
         <Button
-          variant={'primary'}
+          variant="primary"
           className={styles.btn}
+          type="button"
           onClick={() => setIsOpenModal(true)}>
           Создать новую тему
         </Button>
       </main>
-      <Modal onClose={() => setIsOpenModal(false)} isOpen={isOpenModal}>
-        <ModalCreate onClose={() => setIsOpenModal(false)} />
-      </Modal>
+
+      {isOpenModal && (
+        <Modal onClose={() => setIsOpenModal(false)}>
+          <ModalCreate onClose={() => setIsOpenModal(false)} />
+        </Modal>
+      )}
     </div>
   )
 }
