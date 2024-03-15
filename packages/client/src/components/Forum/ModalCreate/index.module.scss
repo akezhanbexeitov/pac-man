@@ -16,7 +16,7 @@
         box-sizing: border-box;
         height: 100%;
         border-radius: 14px;
-        box-shadow: inset 6px 6px 2px 0 rgba(255, 255, 255, 0.25);
+        box-shadow: inset 6px 6px 2px 0 var(--grey-opacity);
         background: var(--black-color);
         padding: 22px 14px;
         display: flex;

@@ -8,7 +8,9 @@ import { useState } from 'react'
 
 const ForumPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false)
-
+  const handleClick = () => {
+    setIsOpenModal(true)
+  }
   return (
     <div className={styles.wrapper}>
       <main className={styles.content}>
@@ -32,7 +34,7 @@ const ForumPage = () => {
           variant="primary"
           className={styles.btn}
           type="button"
-          onClick={() => setIsOpenModal(true)}>
+          onClick={handleClick}>
           Создать новую тему
         </Button>
       </main>

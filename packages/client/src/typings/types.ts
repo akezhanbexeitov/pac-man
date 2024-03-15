@@ -29,14 +29,6 @@ export enum ROUTES {
   LEADERBOARD = '/leaderboard',
   FORUM = '/forum',
 }
-/*
-export type TMessage = {
-  id: number,
-  owner: string,
-  date: string,
-  description: string,
-  comments?: TComment[]
-};*/
 
 export type TComment = {
   id: number,

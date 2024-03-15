@@ -12,11 +12,13 @@ interface Props {
 
 const Topic: FC<Props> = ({ name, label, comments, id }) => {
   const navigate = useNavigate()
-
+  const handleClick = () => {
+    navigate(ROUTES.FORUM + `/${id}`, { state: { id: id } })
+  }
   return (
     <li
       className={styles.item}
-      onClick={() => navigate(ROUTES.FORUM + `/${id}`, { state: { id: id } })}>
+      onClick={handleClick}>
       <div className={styles.item__info}>
         <h3 className={styles.item__name}>{name}</h3>
         <h2 className={styles.item__label}>{label}</h2>

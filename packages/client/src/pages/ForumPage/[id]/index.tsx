@@ -27,7 +27,6 @@ const TopicPage = () => {
     const data = forumsTopic.filter(item => item.id === id)
     setData(data[0])
   }, [])
-
   return (
     <div className={styles.wrapper}>
       <main className={styles.content}>
