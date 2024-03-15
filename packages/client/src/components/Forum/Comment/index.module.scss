@@ -1,0 +1,22 @@
+.comment {
+    box-shadow: inset 6px 6px 2px 0 var(--grey-opacity);
+    background-color: var(--black-color);
+    padding: 16px;
+    border-radius: 14px;
+    &__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    &__name, &__date {
+        font-size: 12px;
+        line-height: 158%;
+        color: var(--yellow-color);
+    }
+    &__description {
+        margin-top: 15px;
+        color: var(--white-color);
+        font-size: 12px;
+        line-height: 158%;
+    }
+}

@@ -29,3 +29,19 @@ export enum ROUTES {
   LEADERBOARD = '/leaderboard',
   FORUM = '/forum',
 }
+
+export type TComment = {
+  id: number,
+  owner: string,
+  date: string,
+  description: string,
+};
+
+export type TTopic = {
+  id: number,
+  label: string,
+  owner: string,
+  date: string,
+  description: string,
+  comments?: TComment[]
+};

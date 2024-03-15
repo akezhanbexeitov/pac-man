@@ -7,7 +7,7 @@ const HomePage = () => {
     <div>
       <Navigation />
       <h1>Главная страница игры</h1>
-      <Button type="primary">Hello world</Button>
+     
     </div>
   )
 }

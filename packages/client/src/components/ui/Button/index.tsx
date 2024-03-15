@@ -3,17 +3,18 @@ import classnames from 'classnames'
 import styles from './index.module.scss'
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: 'primary' | 'secondary' | 'danger'
+  variant: 'primary' | 'secondary' | 'danger',
+  className?: string
 }
 
-const Button: FC<Props> = ({ variant, children, ...rest }) => {
-  const btnClass = classnames({
+const Button: FC<Props> = ({ variant, className, children, ...rest }) => {
+  const btnClass = {
     [styles['btn-primary']]: variant === 'primary',
-    [styles['btn-secondary']]: variant === 'secondary',
-  })
-
+    [styles['btn-secondary']]: variant === 'secondary'
+  }
+  
   return (
-    <button className={btnClass} {...rest}>
+    <button className={classnames(btnClass, className)} {...rest}>
       {children}
     </button>
   )

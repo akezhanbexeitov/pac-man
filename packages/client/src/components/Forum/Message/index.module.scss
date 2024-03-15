@@ -1,0 +1,40 @@
+.item {
+    height: max-content;
+    width: 100%;
+    background-color: var(--grey-color);
+    box-shadow: 4px 4px 4px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+    padding: 25px;
+    box-sizing: border-box;
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__name {
+        font-size: 20px;
+        line-height: 100%;
+        color: var(--black-color);
+    }
+    &__date {
+        font-size: 14px;
+        line-height: 143%;
+        color: var(--black-color);
+    }
+    &__description {
+        font-size: 14px;
+        line-height: 143%;
+        margin-top: 18px;
+    }
+    &__block{
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    &__btnAnswer{
+        margin-top: 13px;
+    }
+    
+}
+

@@ -1,0 +1,18 @@
+.area {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    &__label {
+        font-size: 8px;
+        color: var(--grey-color);
+    }
+    &__textarea {
+        padding: 12px 12px;
+        border-radius: 15px;
+        outline: none;
+        border: none;
+        font-size: 8px;
+        height: 160px;
+    }
+
+}
