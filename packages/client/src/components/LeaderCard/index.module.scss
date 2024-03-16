@@ -2,7 +2,7 @@
   &__card {
     background-color: var(--black-color);
     border-radius: 14px;
-    box-shadow: 6px 6px 2.299999952316284px 0px rgba(255, 255, 255, 0.25) inset;
+    box-shadow: 6px 6px 2.299999952316284px 0px var(--grey-opacity) inset;
     color: var(--white-color);
     padding: 13px 22px 41px;
   }
