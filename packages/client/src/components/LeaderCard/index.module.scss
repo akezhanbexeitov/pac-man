@@ -1,0 +1,25 @@
+.leadercard {
+  &__card {
+    background-color: var(--black-color);
+    border-radius: 14px;
+    box-shadow: 6px 6px 2.299999952316284px 0px var(--grey-opacity) inset;
+    color: var(--white-color);
+    padding: 13px 22px 41px;
+  }
+
+  &__header {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  &__avatar-container {
+    padding: 12px 20px;
+    margin-bottom: 13px;
+    border-radius: 11px;
+    background-color: var(--white-color);
+  }
+
+  &__description {
+    margin-bottom: 9px;
+  }
+}

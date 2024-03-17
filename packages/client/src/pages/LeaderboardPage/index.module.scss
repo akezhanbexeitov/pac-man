@@ -1,0 +1,95 @@
+@mixin arrow {
+  content: '';
+  position: absolute;
+  display: inline-block;
+  padding: 10px;
+  vertical-align: middle;
+  border-style: solid;
+  border-width: 0 1px 1px 0;
+}
+
+@mixin controllers {
+  background-color: transparent;
+  border: none;
+  position: relative;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+.leaderbord {
+  &__layout {
+    background-color: var(--black-color);
+    width: 100vw;
+    height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__section {
+    background-color: var(--yellow-color);
+    border-radius: 21px;
+    padding: 30px 0px 34px;
+    width: 993px;
+  }
+
+  &__header {
+    text-align: center;
+    padding-bottom: 80px;
+  }
+
+  &__list {
+    display: flex;
+    gap: 38px;
+    padding: 0 37px;
+    margin-bottom: 75px;
+    overflow-x: scroll;
+  }
+
+  &__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  &__list-item-active {
+    display: block;
+  }
+
+  &__list-item-non-active {
+    display: none;
+  }
+
+  &__list-inner {
+    display: flex;
+    gap: 38px;
+  }
+
+  &__controllers {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  &__controllers-btn {
+    @include controllers();
+  }
+
+  &__controllers-btn:hover {
+    opacity: 0.5;
+  }
+
+  &__controllers-left-btn::before {
+    @include arrow();
+    top: 40%;
+    left: 20%;
+    transform: rotate(135deg) translate(-50%, 0%);
+  }
+
+  &__controllers-right-btn::before {
+    @include arrow();
+    top: -5%;
+    left: 15%;
+    transform: rotate(315deg) translate(-50%, 0%);
+  }
+}
