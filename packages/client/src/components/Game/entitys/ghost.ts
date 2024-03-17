@@ -15,8 +15,8 @@ export class Ghost {
   ctx: CanvasRenderingContext2D
   bordersMap: IFourPointsPosition[]
 
-  randomDirection: string = ''
-  counter: number = 0
+  randomDirection = ''
+  counter = 0
 
   constructor(
     color: string,
@@ -54,7 +54,8 @@ export class Ghost {
 
     if (Number.isInteger(numX) && Number.isInteger(numY)) {
       const freeWays = this.getFreeWays().filter(
-        (direction) => direction !== this.getOppositeDirection(this.randomDirection)
+        direction =>
+          direction !== this.getOppositeDirection(this.randomDirection)
       )
       const random = getRandom(0, freeWays.length)
       this.randomDirection = freeWays[random - 1]
@@ -94,7 +95,10 @@ export class Ghost {
       if (this.counter <= 5) {
         res.push('up')
         this.counter++
-      } else if (this.counter <= 6 && !getIsBorderDown(this.bordersMap, position)) {
+      } else if (
+        this.counter <= 6 &&
+        !getIsBorderDown(this.bordersMap, position)
+      ) {
         res.push('down')
         this.counter++
       } else if (this.counter >= 7) {
@@ -118,7 +122,10 @@ export class Ghost {
       topLeft: { xPos: this.x, yPos: this.y },
       bottomLeft: { xPos: this.x, yPos: this.y + BASE_SQUARE_SIZE },
       topRight: { xPos: this.x + BASE_SQUARE_SIZE, yPos: this.y },
-      bottomRight: { xPos: this.x + BASE_SQUARE_SIZE, yPos: this.y + BASE_SQUARE_SIZE },
+      bottomRight: {
+        xPos: this.x + BASE_SQUARE_SIZE,
+        yPos: this.y + BASE_SQUARE_SIZE,
+      },
     }
   }
 
