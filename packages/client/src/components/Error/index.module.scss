@@ -1,0 +1,41 @@
+.error {
+  width: 993px;
+  background-color: var(--yellow-color);
+  border-radius: 20px;
+  padding: 20px 40px 50px 40px;
+  position: relative;
+}
+.errorContent {
+  padding: 120px 0 120px;
+  text-align: center;
+  color: var(--red-color);
+
+  .link {
+    display: flex;
+    justify-content: center;
+  }
+}
+.head {
+  font-size: 80px;
+  margin-bottom: 46px;
+}
+.text {
+  font-size: 20px;
+  margin-bottom: 46px;
+  display: flex;
+  justify-content: center;
+
+  p {
+    max-width: 281px;
+  }
+}
+.errorImage {
+  position: absolute;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  top: 0;
+  right: 30px;
+}
+

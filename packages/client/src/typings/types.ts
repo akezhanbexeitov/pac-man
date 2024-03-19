@@ -28,6 +28,7 @@ export enum ROUTES {
   GAME = '/game',
   LEADERBOARD = '/leaderboard',
   FORUM = '/forum',
+  ERROR_500 = '/error500',
 }
 
 export type TComment = {
