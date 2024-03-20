@@ -41,6 +41,7 @@
   background-color: var(--black-color);
   border-radius: 15px;
   min-width: 476px;
+  width: 100%;
   box-shadow: 6px 6px 2.2999999523px 0 rgba(255, 255, 255, 0.2509803922) inset;
   color: var(--white-color);
   margin-right: 20px;
@@ -51,6 +52,10 @@
   &Text {
     font-size: 13px;
     line-height: 30px;
+    min-height: 150px;
+    a {
+      color: #fff;
+    }
   }
 }
 .navigation {
