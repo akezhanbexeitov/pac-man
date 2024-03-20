@@ -5,7 +5,7 @@
 }
 .wrapper {
   width: 100vw;
-  height: 100svh;
+  min-height: 100svh;
   background-color: var(--black-color);
   display: flex;
   justify-content: center;
@@ -55,6 +55,11 @@
 }
 .navigation {
   min-width: 288px;
+  padding: 27px 32px;
+  background-color: var(--black-color);
+  border-radius: 15px;
+  box-shadow: 6px 6px 2.2999999523px 0 rgba(255, 255, 255, 0.2509803922) inset;
+  color: var(--white-color);
 }
 .start {
   display: flex;
