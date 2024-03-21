@@ -1,5 +1,5 @@
 import { BASE_SQUARE_SIZE } from '../constants'
-import { Border } from '../entitys/border'
+import { Border } from '../entities/border'
 import { IFourPointsPosition, IMap, IPosition } from '../models'
 
 export const renderMap = (ctx: CanvasRenderingContext2D, map: IMap) => {
@@ -24,7 +24,10 @@ export const getMapBorders = (map: IMap): IFourPointsPosition[] => {
           topLeft: { xPos: baseX, yPos: baseY },
           bottomLeft: { xPos: baseX, yPos: baseY + BASE_SQUARE_SIZE },
           topRight: { xPos: baseX + BASE_SQUARE_SIZE, yPos: baseY },
-          bottomRight: { xPos: baseX + BASE_SQUARE_SIZE, yPos: baseY + BASE_SQUARE_SIZE },
+          bottomRight: {
+            xPos: baseX + BASE_SQUARE_SIZE,
+            yPos: baseY + BASE_SQUARE_SIZE,
+          },
         })
       }
     })

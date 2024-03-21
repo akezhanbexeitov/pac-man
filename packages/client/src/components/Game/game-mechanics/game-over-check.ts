@@ -1,8 +1,11 @@
-import { Ghost } from '../entitys/ghost'
+import { Ghost } from '../entities/ghost'
 import { IFourPointsPosition } from '../models'
 import { getGhostCollision } from './ghost-collision'
 
-export const isGameOver = (ghosts: Ghost[], PMPosition: IFourPointsPosition) => {
+export const isGameOver = (
+  ghosts: Ghost[],
+  PMPosition: IFourPointsPosition
+) => {
   const {
     topLeft: PMtopLeft,
     bottomRight: PMbottomRight,
@@ -10,7 +13,7 @@ export const isGameOver = (ghosts: Ghost[], PMPosition: IFourPointsPosition) => 
     topRight: PMtopRight,
   } = PMPosition
 
-  return ghosts.some((ghost) => {
+  return ghosts.some(ghost => {
     const { bottomLeft, bottomRight, topLeft, topRight } = ghost.getPosition()
     if (
       getGhostCollision(bottomLeft, PMbottomLeft) ||

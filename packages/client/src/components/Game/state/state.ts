@@ -7,11 +7,11 @@ import {
   getIsBorderUp,
 } from '../game-mechanics/border-collision'
 import { takePellets } from '../game-mechanics/take-pellets'
-import { Ghost } from '../entitys/ghost'
+import { Ghost } from '../entities/ghost'
 import { isGameOver } from '../game-mechanics/game-over-check'
 import { controllerState } from '../game-mechanics/pacman-navigate'
 import { getPMPosition } from './utils'
-import { PacMan } from '../entitys/pac-man'
+import { PacMan } from '../entities/pac-man'
 
 export interface IState {
   pmPosition: IPosition

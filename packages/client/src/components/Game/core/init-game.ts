@@ -1,11 +1,11 @@
-import { Ghost } from '../entitys/ghost'
+import { Ghost } from '../entities/ghost'
 import { firstMap } from '../map/maps-list'
 import { getMapBorders, getInitPosition, getPellets } from '../map/utils'
 import { gameRenderingCycle } from './game-rendering-cycle'
 import { getGameState, setInitState } from '../state/state'
 import { clearScene } from './clear-scene'
 import { renderPacMan, renderPellets, renderGhosts } from './render-fn'
-import { PacMan } from '../entitys/pac-man'
+import { PacMan } from '../entities/pac-man'
 
 export const initGame = (canvas: HTMLCanvasElement) => {
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
