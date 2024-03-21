@@ -28,6 +28,7 @@ export enum ROUTES {
   GAME = '/game',
   LEADERBOARD = '/leaderboard',
   FORUM = '/forum',
+  ERROR = '/error',
 }
 
 export type TComment = {
@@ -44,4 +45,10 @@ export type TTopic = {
   date: string,
   description: string,
   comments?: TComment[]
+};
+
+export type TError = {
+  id: number,
+  code: number,
+  text: string,
 };

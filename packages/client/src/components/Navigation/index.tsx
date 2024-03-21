@@ -10,6 +10,7 @@ const Navigation = () => {
         <li><Link to='/game'>Игра</Link></li>
         <li><Link to='/leaderboard'>Лидерборд</Link></li>
         <li><Link to='/forum'>Форум</Link></li>
+        <li><Link to='/error500'>Ошибка 500</Link></li>
       </ul>
     </nav>
   )

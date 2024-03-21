@@ -25,7 +25,8 @@ const App = () => {
         <Route path={ROUTES.LEADERBOARD} element={<LeaderboardPage />} />
         <Route path={ROUTES.FORUM} element={<ForumPage />} />
         <Route path={`${ROUTES.FORUM}/:topicId`} element={<TopicPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path={`${ROUTES.ERROR}/:code`} element={<NotFoundPage />} />
+        <Route path={'*'} element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   )
