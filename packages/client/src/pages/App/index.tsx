@@ -12,7 +12,6 @@ import {
   TopicPage,
 } from '@/pages'
 import { ROUTES } from '@/typings'
-import ServerErrorPage from "@/pages/ServerErrorPage";
 
 const App = () => {
   return (
@@ -26,8 +25,8 @@ const App = () => {
         <Route path={ROUTES.LEADERBOARD} element={<LeaderboardPage />} />
         <Route path={ROUTES.FORUM} element={<ForumPage />} />
         <Route path={`${ROUTES.FORUM}/:topicId`} element={<TopicPage />} />
-        <Route path={`${ROUTES.ERROR_500}`} element={<ServerErrorPage />} />
-        <Route path="*" element={<NotFoundPage />} />
+        <Route path={`${ROUTES.ERROR}/:code`} element={<NotFoundPage />} />
+        <Route path={'*'} element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   )
