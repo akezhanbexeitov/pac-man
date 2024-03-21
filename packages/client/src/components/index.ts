@@ -4,6 +4,7 @@ import Message from "./Forum/Message"
 import Comment from "./Forum/Comment"
 import CommentCreate from "./Forum/CommentCreate"
 import ModalCreate from "./Forum/ModalCreate"
+import Error from "./Error"
 
 export {
   Navigation,
@@ -11,5 +12,6 @@ export {
   Message,
   Comment,
   ModalCreate,
-  CommentCreate
+  CommentCreate,
+  Error,
 }

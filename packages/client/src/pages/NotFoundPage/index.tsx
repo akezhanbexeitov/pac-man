@@ -1,4 +1,4 @@
-import Error from "@/components/Error";
+import {Error} from "@/components";
 import styles from "./index.module.scss";
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
