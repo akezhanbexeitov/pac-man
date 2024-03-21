@@ -8,12 +8,15 @@ import AuthService from '@/services/auth'
 import { AxiosError } from 'axios'
 import ErrorText from '@/components/ui/ErrorText'
 import Loader from '@/components/ui/Loader'
+import { useDispatch } from 'react-redux'
+import { logIn } from '@/store/actions/authUser'
 
 const LoginPage = () => {
   const [error, setError] = useState<APIError | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const navigate = useNavigate()
+  const dispatch = useDispatch();
   const { signin } = AuthService()
 
   const formik = useFormik({
@@ -33,6 +36,8 @@ const LoginPage = () => {
           }
         }
       } finally {
+        // @ts-ignore
+        dispatch(logIn())
         setIsLoading(false)
       }
     },
