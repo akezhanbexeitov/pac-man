@@ -1,20 +1,22 @@
 import AuthService from '@/services/auth'
-import { APIError, ROUTES, SignupResponse } from '@/typings'
+import { APIError, ROUTES, User } from '@/typings'
 import { AxiosError } from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from './index.module.scss'
-import { Button, Field } from '@/components/ui'
+import { Button, ErrorText, Field, Loader } from '@/components/ui'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
-import ErrorText from '@/components/ui/ErrorText'
-import Loader from '@/components/ui/Loader'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '@/store/store'
+import { addUserInfo, logIn } from '@/store/actions/authUser'
 
 const RegisterPage = () => {
   const [error, setError] = useState<APIError | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
-  const { signup } = AuthService()
+  const { signup, getMe } = AuthService()
   const navigate = useNavigate()
+  const dispatch: AppDispatch = useDispatch()
 
   const formik = useFormik({
     initialValues: {
@@ -35,6 +37,9 @@ const RegisterPage = () => {
       try {
         setIsLoading(true)
         await signup(values)
+        const user = await getMe()
+        dispatch(addUserInfo(user as User))
+        dispatch(logIn())
         navigate(ROUTES.HOME)
       } catch (error: unknown) {
         if (error instanceof AxiosError) {

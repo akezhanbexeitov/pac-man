@@ -1,4 +1,4 @@
-import { Button, Field } from '@/components/ui'
+import { Button, ErrorText, Field, Loader } from '@/components/ui'
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
 import { APIError, ROUTES } from '@/typings'
@@ -6,8 +6,6 @@ import { useFormik } from 'formik'
 import { useState } from 'react'
 import AuthService from '@/services/auth'
 import { AxiosError } from 'axios'
-import ErrorText from '@/components/ui/ErrorText'
-import Loader from '@/components/ui/Loader'
 
 const LoginPage = () => {
   const [error, setError] = useState<APIError | null>(null)
