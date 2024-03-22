@@ -26,12 +26,10 @@ export const authUserSlice = createSlice({
     },
     logIn(state) {
       state.isAuth = true;
-      console.log(initialState)
     },
     addUserInfo(state, action) {
       state.user = action.payload;
     },
-
   },
 });
 

@@ -1,10 +1,9 @@
 import { useSelector } from 'react-redux'
-import { isAuth } from '@/store/selectors/authUserSelectors'
+import { user } from '@/store/selectors/authUserSelectors'
 
 const ProfilePage = () => {
-  const userAuth = useSelector(isAuth);
-  
-  console.log(userAuth)
+  const userInfo = useSelector(user)
+  console.log(userInfo)
   return <div>ProfilePage</div>
 }
 
