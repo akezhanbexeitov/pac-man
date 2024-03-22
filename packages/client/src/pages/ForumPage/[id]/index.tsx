@@ -15,10 +15,19 @@ const TopicPage = () => {
 
   const newCommentRef = useRef<HTMLFormElement | null>(null)
 
-  const isAuth = useAuth()
   const location = useLocation()
-  const navigate = useNavigate()
   const id = location.state.id
+  const isAuth = useAuth()
+  const navigate = useNavigate()
+
+  const handleClick = () => {
+    if (!isAuth) {
+      navigate(ROUTES.LOGIN, {
+        state: { from: location.pathname },
+      })
+    }
+    setIsNewComment(true)
+  }
 
   useEffect(() => {
     if (isNewComment && newCommentRef.current) {
@@ -27,13 +36,6 @@ const TopicPage = () => {
   }, [isNewComment])
 
   useEffect(() => {
-    if (!isAuth) {
-      navigate(ROUTES.LOGIN, {
-        state: { from: location.pathname },
-        replace: true,
-      })
-    }
-
     const data = forumsTopic.filter(item => item.id === id)
     setData(data[0])
   }, [])
@@ -62,7 +64,7 @@ const TopicPage = () => {
             variant="secondary"
             className={styles.btn}
             type="button"
-            onClick={() => setIsNewComment(true)}>
+            onClick={handleClick}>
             Написать сообщение
           </Button>
         </div>
