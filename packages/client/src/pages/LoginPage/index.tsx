@@ -1,18 +1,22 @@
 import { Button, ErrorText, Field, Loader } from '@/components/ui'
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
-import { APIError, ROUTES } from '@/typings'
+import { APIError, ROUTES, User } from '@/typings'
 import { useFormik } from 'formik'
 import { useState } from 'react'
 import AuthService from '@/services/auth'
 import { AxiosError } from 'axios'
+import { addUserInfo, logIn } from '@/store/actions/authUser'
+import { AppDispatch } from '@/store/store'
+import { useDispatch } from 'react-redux'
 
 const LoginPage = () => {
   const [error, setError] = useState<APIError | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
   const navigate = useNavigate()
-  const { signin } = AuthService()
+  const dispatch: AppDispatch = useDispatch()
+  const { signin, getMe } = AuthService()
 
   const formik = useFormik({
     initialValues: {
@@ -23,6 +27,9 @@ const LoginPage = () => {
       try {
         setIsLoading(true)
         await signin(values)
+        const user = await getMe()
+        dispatch(addUserInfo(user as User))
+        dispatch(logIn())
         navigate(ROUTES.HOME)
       } catch (error) {
         if (error instanceof AxiosError) {
