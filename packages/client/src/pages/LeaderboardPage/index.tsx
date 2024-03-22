@@ -1,8 +1,11 @@
 import LeaderCard from '@/components/LeaderCard'
 import styles from './index.module.scss'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { chunk } from '@/utils/chunk'
 import { leaders } from '@/pages/LeaderboardPage/data'
+import useAuth from '@/hooks/useAuth'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ROUTES } from '@/typings'
 
 const LeaderboardPage = () => {
   const [current, setCurrent] = useState(0)
@@ -22,6 +25,19 @@ const LeaderboardPage = () => {
   const isLeftButtonDisable = current + 1 === 1
 
   const isRightButtonDisable = current + 1 === list
+
+  const isAuth = useAuth()
+  const navigate = useNavigate()
+  const location = useLocation()
+
+  useEffect(() => {
+    if (!isAuth) {
+      navigate(ROUTES.LOGIN, {
+        state: { from: location.pathname },
+        replace: true,
+      })
+    }
+  }, [])
 
   return (
     <main className={styles['leaderbord__layout']}>

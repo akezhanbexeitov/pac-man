@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import styles from './index.module.scss'
 import { Button, Head } from '@/components/ui'
 import { ROUTES } from '@/typings'
@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react'
 import { forumsTopic } from '@/pages/ForumPage/forumMock'
 import { TTopic } from '@/typings/types'
 import { Message } from '@/components'
+import useAuth from '@/hooks/useAuth'
 
 const TopicPage = () => {
   const [isNewComment, setIsNewComment] = useState(false)
@@ -14,7 +15,9 @@ const TopicPage = () => {
 
   const newCommentRef = useRef<HTMLFormElement | null>(null)
 
+  const isAuth = useAuth()
   const location = useLocation()
+  const navigate = useNavigate()
   const id = location.state.id
 
   useEffect(() => {
@@ -24,9 +27,17 @@ const TopicPage = () => {
   }, [isNewComment])
 
   useEffect(() => {
+    if (!isAuth) {
+      navigate(ROUTES.LOGIN, {
+        state: { from: location.pathname },
+        replace: true,
+      })
+    }
+
     const data = forumsTopic.filter(item => item.id === id)
     setData(data[0])
   }, [])
+
   return (
     <div className={styles.wrapper}>
       <main className={styles.content}>
