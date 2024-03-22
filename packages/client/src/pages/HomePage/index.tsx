@@ -3,8 +3,12 @@ import { Navigation } from '@/components'
 import { Button } from '@/components/ui'
 import Typewriter from 'typewriter-effect'
 import { ROUTES } from '@/typings'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const typeWriterOptions = {
     strings: [
       `Добро пожаловать в игру Pac-man. Это интерпретация легендарной игры,
@@ -38,7 +42,15 @@ const HomePage = () => {
               </section>
             </div>
             <div className={styles.start}>
-              <Button variant="secondary">Start</Button>
+              <Button
+                variant="secondary"
+                onClick={() =>
+                  navigate(ROUTES.GAME, {
+                    state: { from: location.pathname },
+                  })
+                }>
+                Start
+              </Button>
             </div>
           </div>
         </div>

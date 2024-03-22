@@ -16,8 +16,8 @@ const useAuth = () => {
       if (!userAuth) {
         try {
           const user = await getMe()
-          dispatch(addUserInfo(user as User))
-          dispatch(logIn())
+          await dispatch(addUserInfo(user as User))
+          await dispatch(logIn())
         } catch (error) {
           console.log(error)
         }
