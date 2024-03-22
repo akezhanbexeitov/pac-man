@@ -1,11 +1,19 @@
-import { BASE_SQUARE_SIZE, MOVE_SPEED, SCENE_WIDTH } from '../constants'
+import {
+  BASE_SQUARE_SIZE,
+  LEFT_SIDE_X,
+  LEFT_SIDE_Y,
+  MOVE_SPEED,
+  RIGHT_SIDE_X,
+  RIGHT_SIDE_Y,
+  SCENE_WIDTH,
+} from '../constants'
 import {
   getIsBorderDown,
   getIsBorderLeft,
   getIsBorderRight,
   getIsBorderUp,
 } from '../game-mechanics/border-collision'
-import { IFourPointsPosition, IPosition } from '../models'
+import { Direction, IFourPointsPosition, IPosition } from '../models'
 import { getRandom } from './utils'
 
 export class Ghost {
@@ -15,7 +23,7 @@ export class Ghost {
   ctx: CanvasRenderingContext2D
   bordersMap: IFourPointsPosition[]
 
-  randomDirection = ''
+  randomDirection: Direction = Direction.Up
   counter = 0
 
   constructor(
@@ -31,7 +39,7 @@ export class Ghost {
     this.bordersMap = bordersMap
     this.randomDirection = (() => {
       const random = getRandom(0, 4)
-      return ['up', 'down', 'left', 'right'][random]
+      return ['up', 'down', 'left', 'right'][random] as Direction
     })()
   }
 
@@ -44,12 +52,12 @@ export class Ghost {
       position.topLeft.yPos + BASE_SQUARE_SIZE / 2,
     ]
     if (positionCenter[0] === -BASE_SQUARE_SIZE / 2) {
-      this.x = 480
-      this.y = 210
+      this.x = RIGHT_SIDE_X
+      this.y = RIGHT_SIDE_Y
     }
     if (positionCenter[0] >= SCENE_WIDTH + BASE_SQUARE_SIZE / 2) {
-      this.x = 0
-      this.y = 210
+      this.x = LEFT_SIDE_X
+      this.y = LEFT_SIDE_Y
     }
 
     if (Number.isInteger(numX) && Number.isInteger(numY)) {
@@ -75,7 +83,7 @@ export class Ghost {
     }
   }
 
-  private getOppositeDirection = (val: string): string => {
+  private getOppositeDirection = (val: Direction): string => {
     if (val === 'left') {
       return 'right'
     }
@@ -89,30 +97,30 @@ export class Ghost {
   }
 
   private getFreeWays = () => {
-    const res = []
+    const res: Direction[] = []
     const position = this.getPosition()
     if (!getIsBorderUp(this.bordersMap, position)) {
       if (this.counter <= 5) {
-        res.push('up')
+        res.push(Direction.Up)
         this.counter++
       } else if (
         this.counter <= 6 &&
         !getIsBorderDown(this.bordersMap, position)
       ) {
-        res.push('down')
+        res.push(Direction.Down)
         this.counter++
       } else if (this.counter >= 7) {
         this.counter = 0
       }
     }
     if (!getIsBorderDown(this.bordersMap, position)) {
-      res.push('down')
+      res.push(Direction.Down)
     }
     if (!getIsBorderRight(this.bordersMap, position)) {
-      res.push('right')
+      res.push(Direction.Right)
     }
     if (!getIsBorderLeft(this.bordersMap, position)) {
-      res.push('left')
+      res.push(Direction.Left)
     }
     return res
   }

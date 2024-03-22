@@ -22,8 +22,7 @@ export const isGameOver = (
       getGhostCollision(topRight, PMtopRight)
     ) {
       return true
-    } else {
-      return false
     }
+    return false
   })
 }

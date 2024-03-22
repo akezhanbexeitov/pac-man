@@ -11,3 +11,10 @@ export interface IFourPointsPosition {
   topRight: IPosition
   bottomRight: IPosition
 }
+
+export enum Direction {
+  Up = 'up',
+  Down = 'down',
+  Left = 'left',
+  Right = 'right',
+}

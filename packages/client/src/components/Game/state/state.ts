@@ -1,4 +1,12 @@
-import { BASE_SQUARE_SIZE, MOVE_SPEED, SCENE_WIDTH } from '../constants'
+import {
+  BASE_SQUARE_SIZE,
+  LEFT_SIDE_X,
+  LEFT_SIDE_Y,
+  MOVE_SPEED,
+  RIGHT_SIDE_X,
+  RIGHT_SIDE_Y,
+  SCENE_WIDTH,
+} from '../constants'
 import { IFourPointsPosition, IPosition } from '../models'
 import {
   getIsBorderDown,
@@ -58,10 +66,10 @@ export const getGameState = () => {
   })
 
   if (pmPositionCenter[0] === -BASE_SQUARE_SIZE / 2) {
-    gameState.pmPosition = { xPos: 480, yPos: 210 }
+    gameState.pmPosition = { xPos: RIGHT_SIDE_X, yPos: RIGHT_SIDE_Y }
   }
   if (pmPositionCenter[0] >= SCENE_WIDTH + BASE_SQUARE_SIZE / 2) {
-    gameState.pmPosition = { xPos: 0, yPos: 210 }
+    gameState.pmPosition = { xPos: LEFT_SIDE_X, yPos: LEFT_SIDE_Y }
   }
   if (isGameOver(gameState.ghosts, pmPosition)) {
     gameState.isGameOver = true
