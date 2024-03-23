@@ -2,8 +2,8 @@ import { useSelector } from 'react-redux'
 import { user } from '@/store/selectors/authUserSelectors'
 
 const ProfilePage = () => {
-  const userInfo = useSelector(user)
-  console.log(userInfo)
+  //данные юзера из стора
+  //const userInfo = useSelector(user)
   return <div>ProfilePage</div>
 }
 
