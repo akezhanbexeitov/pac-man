@@ -10,15 +10,15 @@ export type UserDTO = {
 }
 
 export type User = {
-  id: number;
-  login: string;
-  firstName: string;
-  secondName: string;
-  displayName: string;
-  avatar: string;
-  phone: string;
-  email: string;
-};
+  id: number
+  login: string
+  firstName: string
+  secondName: string
+  displayName: string
+  avatar: string
+  phone: string
+  email: string
+}
 
 export enum ROUTES {
   HOME = '/',
@@ -32,23 +32,36 @@ export enum ROUTES {
 }
 
 export type TComment = {
-  id: number,
-  owner: string,
-  date: string,
-  description: string,
-};
+  id: number
+  owner: string
+  date: string
+  description: string
+}
 
 export type TTopic = {
-  id: number,
-  label: string,
-  owner: string,
-  date: string,
-  description: string,
+  id: number
+  label: string
+  owner: string
+  date: string
+  description: string
   comments?: TComment[]
-};
+}
 
 export type TError = {
-  id: number,
-  code: number,
-  text: string,
-};
+  id: number
+  code: number
+  text: string
+}
+
+export type LoginField = {
+  login: string
+  password: string
+}
+
+export type RegisterField = LoginField & {
+  email: string
+  first_name: string
+  second_name: string
+  phone: string
+  repeat_password: string
+}

@@ -8,6 +8,7 @@ import AuthService from '@/services/auth'
 import { AxiosError } from 'axios'
 import ErrorText from '@/components/ui/ErrorText'
 import Loader from '@/components/ui/Loader'
+import { validateLogin } from '@/utils/validate'
 
 const LoginPage = () => {
   const [error, setError] = useState<APIError | null>(null)
@@ -21,6 +22,7 @@ const LoginPage = () => {
       login: '',
       password: '',
     },
+    validate: validateLogin,
     onSubmit: async values => {
       try {
         setIsLoading(true)
@@ -54,7 +56,9 @@ const LoginPage = () => {
               name="login"
               handleChange={formik.handleChange}
               value={formik.values.login}
+              error={!!formik.errors.login}
             />
+            {formik.errors.login && <ErrorText text={formik.errors.login} />}
             <Field
               label="Пароль"
               type="password"
@@ -62,7 +66,11 @@ const LoginPage = () => {
               name="password"
               handleChange={formik.handleChange}
               value={formik.values.password}
+              error={!!formik.errors.password}
             />
+            {formik.errors.password && (
+              <ErrorText text={formik.errors.password} />
+            )}
             {error && <ErrorText text={error.reason} />}
             <Button variant="primary" type="submit" disabled={isLoading}>
               {isLoading ? <Loader /> : 'Авторизоваться'}
