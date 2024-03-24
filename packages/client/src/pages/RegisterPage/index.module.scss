@@ -1,16 +1,15 @@
 .register {
   &__layout {
-    width: 100vw;
-    height: 100svh;
+    min-height: 100vh;
     background-color: var(--black-color);
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow: hidden;
+    overflow-y: auto;
   }
 
   &__background {
-    max-width: 400px;
+    width: 344px;
     padding: 24px;
     background-color: var(--yellow-color);
     border-radius: 20px;
@@ -34,6 +33,6 @@
     padding: 16px;
     border-radius: 20px;
     background-color: var(--black-color);
-    box-shadow: 6px 6px 2.299999952316284px 0px #FFFFFF40 inset;
+    box-shadow: 6px 6px 2.299999952316284px 0px #ffffff40 inset;
   }
 }

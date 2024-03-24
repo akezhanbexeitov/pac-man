@@ -1,6 +1,7 @@
 import { FC, HTMLInputTypeAttribute } from 'react'
 import styles from './index.module.scss'
 import { PatternFormat } from 'react-number-format'
+import classNames from 'classnames'
 
 interface Props {
   label: string
@@ -9,6 +10,7 @@ interface Props {
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void
   name: string
   value: string
+  error?: boolean
 }
 
 const Field: FC<Props> = ({
@@ -18,6 +20,7 @@ const Field: FC<Props> = ({
   handleChange,
   name,
   value,
+  error,
 }) => {
   return (
     <>
@@ -26,7 +29,10 @@ const Field: FC<Props> = ({
         {label === 'Телефон' ? (
           <PatternFormat
             id={label}
-            className={styles['field__input']}
+            className={classNames(
+              styles['field__input'],
+              error && styles['field__input-error']
+            )}
             format="+7 (###) ### ####"
             placeholder={placeholder}
             name={name}
@@ -35,7 +41,10 @@ const Field: FC<Props> = ({
           />
         ) : (
           <input
-            className={styles['field__input']}
+            className={classNames(
+              styles['field__input'],
+              error && styles['field__input-error']
+            )}
             id={label}
             type={type}
             placeholder={placeholder}
