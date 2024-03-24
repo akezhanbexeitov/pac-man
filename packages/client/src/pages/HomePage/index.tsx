@@ -1,10 +1,10 @@
 import styles from './index.module.scss'
 import {Navigation} from '@/components'
-import { useState } from 'react'
+import {useState} from 'react'
 import {Button} from "@/components/ui";
 import Typewriter from 'typewriter-effect';
 import {ROUTES} from "@/typings";
-import Loading from "@/pages/HomePage/Loading";
+import {Loading} from "@/pages";
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false)
@@ -39,11 +39,11 @@ const HomePage = () => {
                 <div className={styles.pageContent}>
                   <section className={styles.about}>
                     <h2 className={styles.aboutTitle}>Об игре</h2>
-                    <p className={styles.aboutText}>
+                    <div className={styles.aboutText}>
                       <Typewriter
                         options={typeWriterOptions}
                       />
-                    </p>
+                    </div>
                   </section>
                   <section className={styles.navigation}>
                     <Navigation/>

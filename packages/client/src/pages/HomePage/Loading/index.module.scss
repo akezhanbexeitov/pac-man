@@ -1,10 +1,23 @@
 .title {
   color: var(--yellow-color);
   font-size: 36px;
-  margin-bottom: 32px;
+  margin-bottom: 120px;
 }
 .content {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+}
+.advice {
+  color: var(--white-color);
+  margin-top: 88px;
+  max-width: 698px;
+  &Title {
+    font-size: 20px;
+    margin-bottom: 38px;
+  }
+  &Text {
+    font-size: 13px;
+    line-height: 30px;
+  }
 }
