@@ -8,7 +8,6 @@ import ForumPage from "./ForumPage";
 import NotFoundPage from "./NotFoundPage";
 import TopicPage from "./ForumPage/[id]";
 import App from "./App";
-import Loading from "./HomePage/Loading";
 
 export {
   HomePage,
@@ -21,5 +20,4 @@ export {
   TopicPage,
   NotFoundPage,
   App,
-  Loading,
 }
