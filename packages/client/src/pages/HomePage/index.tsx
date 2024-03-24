@@ -35,7 +35,7 @@ const HomePage = () => {
   const dispatch: AppDispatch = useDispatch()
   const { getMe } = AuthService()
   const userAuth = useSelector(isAuth)
-  
+
   useEffect(() => {
     if (!userAuth) {
       (async function() {
@@ -50,8 +50,8 @@ const HomePage = () => {
         }
       })()
     }
-  }, [])
-  
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       {loading ?
