@@ -48,17 +48,10 @@ export type TTopic = {
 }
 
 export type TError = {
-  id: number,
-  code: number,
-  text: string,
-};
-
-export type TAdvice = {
-  id: number,
-  title: string,
-  text: string,
-};
-
+  id: number
+  code: number
+  text: string
+}
 
 export type LoginField = {
   login: string
@@ -72,4 +65,3 @@ export type RegisterField = LoginField & {
   phone: string
   repeat_password: string
 }
-
