@@ -5,6 +5,7 @@ import Comment from "./Forum/Comment"
 import CommentCreate from "./Forum/CommentCreate"
 import ModalCreate from "./Forum/ModalCreate"
 import Error from "./Error"
+import ErrorFallback from "./ErrorFallback"
 
 export {
   Navigation,
@@ -14,4 +15,5 @@ export {
   ModalCreate,
   CommentCreate,
   Error,
+  ErrorFallback,
 }
