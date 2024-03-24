@@ -1,13 +1,14 @@
 import AuthService from '@/services/auth'
-import { APIError, ROUTES, SignupResponse } from '@/typings'
+import { APIError, ROUTES } from '@/typings'
 import { AxiosError } from 'axios'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import styles from './index.module.scss'
 import { Button, Field } from '@/components/ui'
 import { useNavigate } from 'react-router-dom'
 import { useFormik } from 'formik'
 import ErrorText from '@/components/ui/ErrorText'
 import Loader from '@/components/ui/Loader'
+import { validateRegister } from '@/utils/validate'
 
 const RegisterPage = () => {
   const [error, setError] = useState<APIError | null>(null)
@@ -26,6 +27,8 @@ const RegisterPage = () => {
       password: '',
       repeat_password: '',
     },
+
+    validate: validateRegister,
     onSubmit: async values => {
       if (values.password !== values.repeat_password) {
         setError({ reason: 'Пароли не совпадают' })
@@ -64,7 +67,9 @@ const RegisterPage = () => {
               name="login"
               handleChange={formik.handleChange}
               value={formik.values.login}
+              error={!!formik.errors.login}
             />
+            {formik.errors.login && <ErrorText text={formik.errors.login} />}
             <Field
               label="Почта"
               type="email"
@@ -72,7 +77,9 @@ const RegisterPage = () => {
               name="email"
               handleChange={formik.handleChange}
               value={formik.values.email}
+              error={!!formik.errors.email}
             />
+            {formik.errors.email && <ErrorText text={formik.errors.email} />}
             <Field
               label="Имя"
               type="text"
@@ -80,7 +87,11 @@ const RegisterPage = () => {
               name="first_name"
               handleChange={formik.handleChange}
               value={formik.values.first_name}
+              error={!!formik.errors.first_name}
             />
+            {formik.errors.first_name && (
+              <ErrorText text={formik.errors.first_name} />
+            )}
             <Field
               label="Фамилия"
               type="text"
@@ -88,7 +99,11 @@ const RegisterPage = () => {
               name="second_name"
               handleChange={formik.handleChange}
               value={formik.values.second_name}
+              error={!!formik.errors.second_name}
             />
+            {formik.errors.second_name && (
+              <ErrorText text={formik.errors.second_name} />
+            )}
             <Field
               label="Телефон"
               type="text"
@@ -96,7 +111,9 @@ const RegisterPage = () => {
               name="phone"
               handleChange={formik.handleChange}
               value={formik.values.phone}
+              error={!!formik.errors.phone}
             />
+            {formik.errors.phone && <ErrorText text={formik.errors.phone} />}
             <Field
               label="Пароль"
               type="password"
@@ -104,7 +121,11 @@ const RegisterPage = () => {
               name="password"
               handleChange={formik.handleChange}
               value={formik.values.password}
+              error={!!formik.errors.password}
             />
+            {formik.errors.password && (
+              <ErrorText text={formik.errors.password} />
+            )}
             <Field
               label="Повторите пароль"
               type="password"
@@ -112,7 +133,11 @@ const RegisterPage = () => {
               name="repeat_password"
               handleChange={formik.handleChange}
               value={formik.values.repeat_password}
+              error={!!formik.errors.repeat_password}
             />
+            {formik.errors.repeat_password && (
+              <ErrorText text={formik.errors.repeat_password} />
+            )}
             {error && <ErrorText text={error.reason} />}
             <Button variant="primary" type="submit" disabled={isLoading}>
               {isLoading ? <Loader /> : 'Авторизоваться'}
