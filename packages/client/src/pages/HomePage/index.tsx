@@ -10,26 +10,32 @@ import AuthService from '@/services/auth'
 import { addUserInfo, logIn } from '@/store/actions/authUser'
 import { isAuth } from '@/store/selectors/authUserSelectors'
 
-import {Loading} from "@/pages";
+import { Loading } from '@/pages'
+import { useNavigate } from 'react-router-dom'
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
   const typeWriterOptions = {
     strings: [
       `Добро пожаловать в игру Pac-man. Это интерпретация легендарной игры,
        сделанная студией Epic Fail.`,
       `Спасайтесь от врагов и набирайте очки.`,
-      `Следите за своим рейтингом в <a href="${ROUTES.LEADERBOARD}">Leaderboard.</a>`,
-      `Обсуждайте тонкости игры с знатоками на нашем <a href="${ROUTES.FORUM}">Форуме</a>.`,
+      `Следите за своим рейтингом в <a href='${ROUTES.LEADERBOARD}'>Leaderboard.</a>`,
+      `Обсуждайте тонкости игры с знатоками на нашем <a href='${ROUTES.FORUM}'>Форуме</a>.`
     ],
     autoStart: true,
     delay: 22,
     deleteSpeed: 1,
     loop: true,
-    pauseFor: 3000,
+    pauseFor: 3000
   }
   const handleStart = () => {
-    setLoading(true);
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      navigate(ROUTES.GAME)
+    }, 3000)
   }
   //todo перенести в HOC компонент для авторизации
   const dispatch: AppDispatch = useDispatch()
@@ -72,11 +78,11 @@ const HomePage = () => {
                     </div>
                   </section>
                   <section className={styles.navigation}>
-                    <Navigation/>
+                    <Navigation />
                   </section>
                 </div>
                 <div className={styles.start}>
-                  <Button disabled={loading} onClick={handleStart} variant="secondary">Start</Button>
+                  <Button disabled={loading} onClick={handleStart} variant='secondary'>Start</Button>
                 </div>
               </div>
             </div>

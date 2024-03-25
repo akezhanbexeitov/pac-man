@@ -1,4 +1,4 @@
-import { FC, forwardRef } from 'react'
+import { forwardRef } from 'react'
 import styles from './index.module.scss'
 import { Button } from '@/components/ui'
 

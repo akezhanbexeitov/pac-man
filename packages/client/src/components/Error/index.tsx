@@ -3,7 +3,6 @@ import styles from './index.module.scss';
 import enemyIcon from './img/i1.png';
 import {Link} from "react-router-dom";
 import {Button} from "@/components/ui";
-import Loader from "@/components/ui/Loader";
 
 interface Props {
   code: string | number
