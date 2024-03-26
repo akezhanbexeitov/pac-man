@@ -5,7 +5,7 @@ import {PacMan} from "@/pages/HomePage/Loading/PacMan/PacMan";
 import {advices} from "@/pages/HomePage/Loading/advicesMock";
 
 const Loading = () => {
-  const ref = useRef<null | HTMLCanvasElement>(null);
+  const ref = useRef<HTMLCanvasElement>(null);
   const [adviceIndex, setAdviceIndex] = useState(0);
   useEffect(() => {
     const rand = Math.floor(Math.random() * (3));
