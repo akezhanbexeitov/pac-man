@@ -9,11 +9,12 @@ import { AppDispatch } from '@/store/store'
 import AuthService from '@/services/auth'
 import { addUserInfo, logIn } from '@/store/actions/authUser'
 import { isAuth } from '@/store/selectors/authUserSelectors'
-
 import {Loading} from "@/pages";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate();
   const typeWriterOptions = {
     strings: [
       `Добро пожаловать в игру Pac-man. Это интерпретация легендарной игры,
@@ -30,12 +31,13 @@ const HomePage = () => {
   }
   const handleStart = () => {
     setLoading(true);
+    setTimeout(()=>navigate(ROUTES.GAME), 3000);
   }
   //todo перенести в HOC компонент для авторизации
   const dispatch: AppDispatch = useDispatch()
   const { getMe } = AuthService()
   const userAuth = useSelector(isAuth)
-  
+
   useEffect(() => {
     if (!userAuth) {
       (async function() {
@@ -50,8 +52,8 @@ const HomePage = () => {
         }
       })()
     }
-  }, [])
-  
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       {loading ?
@@ -60,8 +62,7 @@ const HomePage = () => {
         <>
           <h1 className={styles.title}>YaPacman</h1>
           <main className={styles.content}>
-            <div className={styles.page}>
-              <div className={styles.pageWrapper}>
+              <div className={styles.page}>
                 <div className={styles.pageContent}>
                   <section className={styles.about}>
                     <h2 className={styles.aboutTitle}>Об игре</h2>
@@ -79,7 +80,7 @@ const HomePage = () => {
                   <Button disabled={loading} onClick={handleStart} variant="secondary">Start</Button>
                 </div>
               </div>
-            </div>
+
           </main>
         </>
       }
