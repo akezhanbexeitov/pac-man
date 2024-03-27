@@ -5,14 +5,9 @@ import {
   MOVE_SPEED,
   RIGHT_SIDE_X,
   RIGHT_SIDE_Y,
-  SCENE_WIDTH,
+  SCENE_WIDTH
 } from '../constants'
-import {
-  getIsBorderDown,
-  getIsBorderLeft,
-  getIsBorderRight,
-  getIsBorderUp,
-} from '../game-mechanics/border-collision'
+import { getIsBorderDown, getIsBorderLeft, getIsBorderRight, getIsBorderUp } from '../game-mechanics/border-collision'
 import { Direction, IFourPointsPosition, IPosition } from '../models'
 import { getRandom } from './utils'
 
@@ -22,10 +17,10 @@ export class Ghost {
   y: number
   ctx: CanvasRenderingContext2D
   bordersMap: IFourPointsPosition[]
-
+  
   randomDirection: Direction = Direction.Up
   counter = 0
-
+  
   constructor(
     color: string,
     position: IPosition,
@@ -42,14 +37,14 @@ export class Ghost {
       return ['up', 'down', 'left', 'right'][random] as Direction
     })()
   }
-
+  
   private move = () => {
     const numX = this.x / BASE_SQUARE_SIZE
     const numY = this.y / BASE_SQUARE_SIZE
     const position = this.getPosition()
     const positionCenter = [
       position.topLeft.xPos + BASE_SQUARE_SIZE / 2,
-      position.topLeft.yPos + BASE_SQUARE_SIZE / 2,
+      position.topLeft.yPos + BASE_SQUARE_SIZE / 2
     ]
     if (positionCenter[0] === -BASE_SQUARE_SIZE / 2) {
       this.x = RIGHT_SIDE_X
@@ -59,7 +54,7 @@ export class Ghost {
       this.x = LEFT_SIDE_X
       this.y = LEFT_SIDE_Y
     }
-
+    
     if (Number.isInteger(numX) && Number.isInteger(numY)) {
       const freeWays = this.getFreeWays().filter(
         direction =>
@@ -82,7 +77,7 @@ export class Ghost {
         this.x += MOVE_SPEED
     }
   }
-
+  
   private getOppositeDirection = (val: Direction): string => {
     if (val === 'left') {
       return 'right'
@@ -95,7 +90,7 @@ export class Ghost {
     }
     return 'top'
   }
-
+  
   private getFreeWays = () => {
     const res: Direction[] = []
     const position = this.getPosition()
@@ -124,7 +119,7 @@ export class Ghost {
     }
     return res
   }
-
+  
   getPosition = (): IFourPointsPosition => {
     return {
       topLeft: { xPos: this.x, yPos: this.y },
@@ -132,14 +127,66 @@ export class Ghost {
       topRight: { xPos: this.x + BASE_SQUARE_SIZE, yPos: this.y },
       bottomRight: {
         xPos: this.x + BASE_SQUARE_SIZE,
-        yPos: this.y + BASE_SQUARE_SIZE,
-      },
+        yPos: this.y + BASE_SQUARE_SIZE
+      }
     }
   }
-
+  
   render = () => {
     this.move()
+    
+    // Set ghost color
     this.ctx.fillStyle = this.color
-    this.ctx.fillRect(this.x, this.y, BASE_SQUARE_SIZE, BASE_SQUARE_SIZE)
+    
+    // Draw the ghost body (circle)
+    this.ctx.beginPath()
+    this.ctx.arc(
+      this.x + BASE_SQUARE_SIZE / 2, // Center x-coordinate
+      this.y + BASE_SQUARE_SIZE / 2, // Center y-coordinate
+      BASE_SQUARE_SIZE / 2, // Radius
+      0, // Start angle
+      Math.PI * 2 // End angle (360 degrees)
+    )
+    this.ctx.fill()
+    this.ctx.closePath()
+    // Draw the bottom half of the ghost body (rectangle)
+    this.ctx.fillRect(
+      this.x, // X-coordinate of the top-left corner
+      this.y + BASE_SQUARE_SIZE / 2, // Y-coordinate of the top-left corner
+      BASE_SQUARE_SIZE, // Width
+      BASE_SQUARE_SIZE / 2 // Height
+    )
+    
+    // Draw the ghost eyes (two smaller circles)
+    const eyeRadius = BASE_SQUARE_SIZE / 6
+    const eyeOffsetX = BASE_SQUARE_SIZE / 3
+    const eyeOffsetY = BASE_SQUARE_SIZE / 4
+    
+    this.ctx.fillStyle = 'white' // Eye color
+    
+    // Left eye
+    this.ctx.beginPath()
+    this.ctx.arc(
+      this.x + eyeOffsetX,
+      this.y + eyeOffsetY,
+      eyeRadius,
+      0,
+      Math.PI * 2
+    )
+    this.ctx.fill()
+    this.ctx.closePath()
+    
+    // Right eye
+    this.ctx.beginPath()
+    this.ctx.arc(
+      this.x + BASE_SQUARE_SIZE - eyeOffsetX,
+      this.y + eyeOffsetY,
+      eyeRadius,
+      0,
+      Math.PI * 2
+    )
+    this.ctx.fill()
+    this.ctx.closePath()
   }
+  
 }

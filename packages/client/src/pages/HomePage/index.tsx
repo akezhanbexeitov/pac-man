@@ -35,7 +35,7 @@ const HomePage = () => {
     setTimeout(() => {
       setLoading(false)
       navigate(ROUTES.GAME)
-    }, 3000)
+    }, 4100)
   }
   //todo перенести в HOC компонент для авторизации
   const dispatch: AppDispatch = useDispatch()

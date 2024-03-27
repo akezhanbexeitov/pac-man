@@ -26,7 +26,6 @@ export interface IState {
   isWinGame: boolean
   isGameOver: boolean
   direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT',
-  move: boolean
 }
 
 let gameState: IState = {
@@ -42,7 +41,6 @@ let gameState: IState = {
   isWinGame: false,
   isGameOver: false,
   direction: 'LEFT',
-  move: false
 }
 
 export const setInitState = (state: IState) => {

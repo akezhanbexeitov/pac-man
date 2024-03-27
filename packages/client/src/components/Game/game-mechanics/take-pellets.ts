@@ -1,5 +1,13 @@
 import { BASE_SQUARE_SIZE, PELLET_RADIUS } from '../constants'
 
+const pelletSound = new Audio('/src/assets/sounds/take-pellet.mp3');
+const playPelletSound = () => {
+  pelletSound.play(); // Воспроизводим звук
+  setTimeout(() => pelletSound.pause(), 100);
+  pelletSound.currentTime = 0; 
+};
+
+
 export const takePellets = (
   pellets: [number, number][],
   pmPosition: number[],
@@ -12,6 +20,7 @@ export const takePellets = (
     ) {
       pellets.splice(index, 1)
       counter()
+      playPelletSound(); // Проигрываем короткий звук при взятии пеллета
     }
   })
   return pellets

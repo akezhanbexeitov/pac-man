@@ -3,15 +3,14 @@ import { IState } from '../state/state'
 
 export class PacMan {
   // Определяем переменную для анимации рта
-  private mouthOpen = false // Начальное состояние рта (открыт)
-  private animationInterval: NodeJS.Timeout | null = null // Добавляем переменную для интервала
+  private mouthOpen = false
+  private animationInterval: NodeJS.Timeout | null = null
   
   render = (ctx: CanvasRenderingContext2D, state: IState | undefined) => {
     if (!this.animationInterval) {
-      // Устанавливаем интервал, если он еще не установлен
       this.animationInterval = setInterval(() => {
         this.mouthOpen = !this.mouthOpen
-      }, 500) // Здесь 500 миллисекунд - это время задержки между изменениями состояния (половина секунды)
+      }, 500)
     }
     ctx.fillStyle = 'yellow'
     if (state) {
@@ -40,8 +39,7 @@ export class PacMan {
       ctx.rotate(rotation)
       
       ctx.beginPath()
-      // Изменяем угол открытия рта в зависимости от переменной mouthOpen
-      const mouthAngle = this.mouthOpen ? Math.PI * 0.2 : 0 // Угол открытия рта
+      const mouthAngle = this.mouthOpen ? Math.PI * 0.2 : 0
       ctx.arc(0, 0, BASE_SQUARE_SIZE / 2, mouthAngle, Math.PI * 1.9 - mouthAngle, false)
       ctx.lineTo(0, 0)
       ctx.closePath()
