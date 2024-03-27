@@ -23,7 +23,7 @@ export class PacMan {
 
   private drawFrame = (matrix: Array<Array<number>>) => {
     this.context.fillStyle = '#FFD301';
-    this.context.clearRect(0, 0, 13*PIXEL_SIZE, 13*PIXEL_SIZE);
+    this.context.clearRect(0, 0, PAC_MAN_WIDTH_IN_PX, PAC_MAN_HEIGHT_IN_PX);
     for (let i = 0; i < matrix.length; i++) {
       for(let j = 0; j < matrix[i].length; j++) {
         if(matrix[i][j]){
@@ -44,11 +44,7 @@ export class PacMan {
     if(!this.context) return;
     this.drawFrame(pacManMatrix[this.index]);
     setTimeout(() => {
-      if(this.index < pacManMatrix.length - 1) {
-        this.index += 1;
-      } else {
-        this.index = 0;
-      }
+      this.index = (this.index + 1) % pacManMatrix.length
       requestAnimationFrame(this.startPacAnimate);
     }, 1000 / MOUTH_SPEED);
   }
@@ -58,7 +54,9 @@ export class PacMan {
     this.context.clearRect(PAC_MAN_WIDTH_IN_PX, 0, POINTS_SCREEN_WIDTH, PAC_MAN_HEIGHT_IN_PX);
     for(let i = 0; i < POINTS_COUNT; i++) {
       const leftPointX = POINTS_SCREEN_WIDTH - i*PAC_MAN_WIDTH_IN_PX + this.pointX;
-      if(leftPointX > PAC_MAN_WIDTH_IN_PX) this.drawPoint(leftPointX, PAC_MAN_HEIGHT_IN_PX/2);
+      if(leftPointX > PAC_MAN_WIDTH_IN_PX) {
+        this.drawPoint(leftPointX, PAC_MAN_HEIGHT_IN_PX/2);
+      }
     }
     this.pointX -= 1;
     if(this.pointX < -PAC_MAN_WIDTH_IN_PX) {
