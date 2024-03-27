@@ -1,4 +1,6 @@
-import { createSlice } from '@reduxjs/toolkit';
+import AuthService from '@/services/auth';
+import { User } from '@/typings';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 
 interface AuthState { 
   user: User | null;
@@ -31,5 +33,7 @@ export const authUserSlice = createSlice({
     })
   }
 });
+
+export { addUserInfo }
 
 export default authUserSlice.reducer;
