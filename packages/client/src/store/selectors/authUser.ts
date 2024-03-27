@@ -1,5 +1,4 @@
 import { RootState } from '@/store/store'
 
-export const isAuth = (state: RootState) => state.auth.isAuth;
-export const user = (state: RootState) => state.auth.user;
-
+export const userData = (state: RootState) => state.auth.user;
+export const userAuth = (state: RootState) => state.auth.isAuth;

@@ -5,10 +5,21 @@ import cn from 'classnames'
 import { ModalCreate, Topic } from '@/components'
 import { forums } from '@/pages/ForumPage/forumMock'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { userAuth } from '@/store/selectors/authUser'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const ForumPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false)
+
+  const isAuth = useSelector(userAuth)
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const handleClick = () => {
+    if (!isAuth) {
+      navigate(ROUTES.LOGIN, { state: { from: location.pathname } })
+    }
     setIsOpenModal(true)
   }
   return (

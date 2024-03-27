@@ -6,6 +6,7 @@ import CommentCreate from "./Forum/CommentCreate"
 import ModalCreate from "./Forum/ModalCreate"
 import Error from "./Error"
 import ErrorFallback from "./ErrorFallback"
+import RequireAuth from "./RequireAuth"
 
 export {
   Navigation,
@@ -16,4 +17,5 @@ export {
   CommentCreate,
   Error,
   ErrorFallback,
+  RequireAuth,
 }

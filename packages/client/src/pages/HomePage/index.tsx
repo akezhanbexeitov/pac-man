@@ -3,12 +3,7 @@ import { Navigation } from '@/components'
 import { Button } from '@/components/ui'
 import Typewriter from 'typewriter-effect'
 import { ROUTES } from '@/typings'
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { AppDispatch } from '@/store/store'
-import AuthService from '@/services/auth'
-import { addUserInfo, logIn } from '@/store/actions/authUser'
-import { isAuth } from '@/store/selectors/authUser'
+import { useState } from 'react'
 import { Loading } from '@/pages'
 import { useNavigate } from 'react-router-dom'
 
@@ -33,26 +28,6 @@ const HomePage = () => {
     setLoading(true)
     setTimeout(() => navigate(ROUTES.GAME), 3000)
   }
-  //todo перенести в HOC компонент для авторизации
-  const dispatch: AppDispatch = useDispatch()
-  const { getMe } = AuthService()
-  const userAuth = useSelector(isAuth)
-
-  useEffect(() => {
-    if (!userAuth) {
-      ;(async function () {
-        try {
-          const user = await getMe()
-          if (user && !('isAxiosError' in user)) {
-            dispatch(addUserInfo(user))
-            dispatch(logIn())
-          }
-        } catch (e) {
-          console.log(e)
-        }
-      })()
-    }
-  }, [])
 
   return (
     <div className={styles.wrapper}>

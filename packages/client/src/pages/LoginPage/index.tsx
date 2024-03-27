@@ -1,6 +1,6 @@
 import { Button, Field } from '@/components/ui'
 import styles from './index.module.scss'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { APIError, ROUTES } from '@/typings'
 import { useFormik } from 'formik'
 import { useState } from 'react'
@@ -14,6 +14,7 @@ const LoginPage = () => {
   const [error, setError] = useState<APIError | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
 
+  const location = useLocation()
   const navigate = useNavigate()
   const { signin } = AuthService()
 
@@ -27,7 +28,7 @@ const LoginPage = () => {
       try {
         setIsLoading(true)
         await signin(values)
-        navigate(ROUTES.HOME)
+        navigate(location.state.from || ROUTES.HOME)
       } catch (error) {
         if (error instanceof AxiosError) {
           if (error.response?.data) {
