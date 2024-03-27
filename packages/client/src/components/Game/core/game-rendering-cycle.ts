@@ -23,11 +23,22 @@ export function gameRenderingCycle(
 
     if (deltaTime >= interval) {
       const currentState = getState()
-      if (currentState.isWinGame || currentState.isGameOver) {
+      if (currentState.isWinGame) {
         cancelAnimationFrame(rendering)
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const gameOverDiv = document.querySelector('#gameWinListener')!
+        gameOverDiv.classList.add('game__gameWin')
+      }
+      if (currentState.isGameOver) {
+        cancelAnimationFrame(rendering)
+        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+        const gameOverDiv = document.querySelector('#gameOverListener')!
+        gameOverDiv.classList.add('game__gameOver')
       }
       startTime = timeStamp
-      fns.forEach(i => i(ctx, currentState))
+      if (!currentState.isPause) {
+        fns.forEach(i => i(ctx, currentState))
+      }
     }
   }
   return sceneTimer

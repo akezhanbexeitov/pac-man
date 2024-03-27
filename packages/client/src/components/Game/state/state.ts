@@ -30,6 +30,7 @@ export interface IState {
   score: number
   isWinGame: boolean
   isGameOver: boolean
+  isPause: boolean
 }
 
 let gameState: IState = {
@@ -44,13 +45,20 @@ let gameState: IState = {
   score: 0,
   isWinGame: false,
   isGameOver: false,
+  isPause: false,
 }
 
 export const setInitState = (state: IState) => {
   gameState = { ...state }
 }
 
+export const setPause = () => {
+  const pause = gameState.isPause
+  gameState.isPause = !pause
+}
+
 export const getGameState = () => {
+  if (gameState.isPause) return gameState
   const pmPosition = getPMPosition(gameState)
   const { topLeft: PMtopLeft } = pmPosition
   const pmPositionCenter = [
