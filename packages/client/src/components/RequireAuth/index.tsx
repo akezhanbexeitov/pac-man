@@ -31,7 +31,7 @@ const RequireAuth: FC<Props> = ({ children }) => {
     }
 
     fetchUser()
-  }, [])
+  }, [isAuth])
 
   if (loading) {
     return null
