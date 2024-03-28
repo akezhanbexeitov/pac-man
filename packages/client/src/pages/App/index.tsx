@@ -9,14 +9,14 @@ import {
   NotFoundPage,
   ProfilePage,
   RegisterPage,
-  TopicPage
+  TopicPage,
 } from '@/pages'
 import { ROUTES } from '@/typings'
+import { RequireAuth } from '@/components'
 import { Provider } from 'react-redux'
 import { store } from '@/store/store'
 
 const App = () => {
-  
   return (
     <Provider store={store}>
       <BrowserRouter>
@@ -24,11 +24,39 @@ const App = () => {
           <Route path={ROUTES.HOME} element={<HomePage />} />
           <Route path={ROUTES.LOGIN} element={<LoginPage />} />
           <Route path={ROUTES.REGISTRATION} element={<RegisterPage />} />
-          <Route path={ROUTES.PROFILE} element={<ProfilePage />} />
-          <Route path={ROUTES.GAME} element={<GamePage />} />
-          <Route path={ROUTES.LEADERBOARD} element={<LeaderboardPage />} />
+          <Route
+            path={ROUTES.PROFILE}
+            element={
+              <RequireAuth>
+                <ProfilePage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={ROUTES.GAME}
+            element={
+              <RequireAuth>
+                <GamePage />
+              </RequireAuth>
+            }
+          />
+          <Route
+            path={ROUTES.LEADERBOARD}
+            element={
+              <RequireAuth>
+                <LeaderboardPage />
+              </RequireAuth>
+            }
+          />
           <Route path={ROUTES.FORUM} element={<ForumPage />} />
-          <Route path={`${ROUTES.FORUM}/:topicId`} element={<TopicPage />} />
+          <Route
+            path={`${ROUTES.FORUM}/:topicId`}
+            element={
+              <RequireAuth>
+                <TopicPage />
+              </RequireAuth>
+            }
+          />
           <Route path={`${ROUTES.ERROR}/:code`} element={<NotFoundPage />} />
           <Route path={'*'} element={<NotFoundPage />} />
         </Routes>
