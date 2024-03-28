@@ -1,11 +1,13 @@
 import { userAuth } from "@/store/selectors/authUser"
 import { addUserInfo } from "@/store/slices/authUser"
 import { AppDispatch } from "@/store/store"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 
 const useAuth = () => {
+  const [loading, setLoading] = useState<boolean>(true)
+
   const isAuth = useSelector(userAuth)
   const dispatch: AppDispatch = useDispatch()
   
@@ -18,12 +20,16 @@ const useAuth = () => {
           console.log(error)
         }
       }
+      setLoading(false)
     }
 
     fetchUser()
-  }, [isAuth])
+  }, [isAuth])  
 
-  return isAuth
+  return {
+    isAuth,
+    loading
+  }
 }
 
 export default useAuth

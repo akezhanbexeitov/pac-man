@@ -11,7 +11,7 @@ import useAuth from '@/hooks/useAuth'
 const ForumPage = () => {
   const [isOpenModal, setIsOpenModal] = useState(false)
 
-  const isAuth = useAuth()
+  const { isAuth } = useAuth()
   const navigate = useNavigate()
   const location = useLocation()
 

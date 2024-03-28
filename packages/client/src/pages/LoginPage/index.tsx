@@ -23,7 +23,7 @@ const LoginPage = () => {
       login: '',
       password: '',
     },
-    validate: validateLogin,
+    // validate: validateLogin,
     onSubmit: async values => {
       try {
         setIsLoading(true)
