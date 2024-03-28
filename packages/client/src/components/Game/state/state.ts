@@ -5,15 +5,10 @@ import {
   MOVE_SPEED,
   RIGHT_SIDE_X,
   RIGHT_SIDE_Y,
-  SCENE_WIDTH,
+  SCENE_WIDTH
 } from '../constants'
 import { IFourPointsPosition, IPosition } from '../models'
-import {
-  getIsBorderDown,
-  getIsBorderLeft,
-  getIsBorderRight,
-  getIsBorderUp,
-} from '../game-mechanics/border-collision'
+import { getIsBorderDown, getIsBorderLeft, getIsBorderRight, getIsBorderUp } from '../game-mechanics/border-collision'
 import { takePellets } from '../game-mechanics/take-pellets'
 import { Ghost } from '../entities/ghost'
 import { isGameOver } from '../game-mechanics/game-over-check'
@@ -30,12 +25,13 @@ export interface IState {
   score: number
   isWinGame: boolean
   isGameOver: boolean
+  direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT',
 }
 
 let gameState: IState = {
   pmPosition: {
     xPos: 0,
-    yPos: 0,
+    yPos: 0
   },
   pacMan: new PacMan(),
   ghosts: [],
@@ -44,6 +40,7 @@ let gameState: IState = {
   score: 0,
   isWinGame: false,
   isGameOver: false,
+  direction: 'LEFT',
 }
 
 export const setInitState = (state: IState) => {
@@ -55,16 +52,16 @@ export const getGameState = () => {
   const { topLeft: PMtopLeft } = pmPosition
   const pmPositionCenter = [
     PMtopLeft.xPos + BASE_SQUARE_SIZE / 2,
-    PMtopLeft.yPos + BASE_SQUARE_SIZE / 2,
+    PMtopLeft.yPos + BASE_SQUARE_SIZE / 2
   ]
-
+  
   gameState.pellets = takePellets(gameState.pellets, pmPositionCenter, () => {
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const scoreCounter = document.querySelector('#scoreCounter')!
     gameState.score += 10
     scoreCounter.innerHTML = String(gameState.score)
   })
-
+  
   if (pmPositionCenter[0] === -BASE_SQUARE_SIZE / 2) {
     gameState.pmPosition = { xPos: RIGHT_SIDE_X, yPos: RIGHT_SIDE_Y }
   }
@@ -77,27 +74,33 @@ export const getGameState = () => {
   if (gameState.pellets.length === 0) {
     gameState.isWinGame = true
   }
-
+  
   switch (controllerState.pressedHorizontalKey) {
     case 'ArrowRight':
       if (!getIsBorderRight(gameState.bordersMap, getPMPosition(gameState))) {
         gameState.pmPosition.xPos += MOVE_SPEED
+        gameState.direction = 'RIGHT'
       }
       break
     case 'ArrowLeft':
       if (!getIsBorderLeft(gameState.bordersMap, getPMPosition(gameState))) {
         gameState.pmPosition.xPos -= MOVE_SPEED
+        gameState.direction = 'LEFT'
+        
       }
   }
   switch (controllerState.pressedVerticallKey) {
     case 'ArrowUp':
       if (!getIsBorderUp(gameState.bordersMap, getPMPosition(gameState))) {
         gameState.pmPosition.yPos -= MOVE_SPEED
+        gameState.direction = 'UP'
+        
       }
       break
     case 'ArrowDown':
       if (!getIsBorderDown(gameState.bordersMap, getPMPosition(gameState))) {
         gameState.pmPosition.yPos += MOVE_SPEED
+        gameState.direction = 'DOWN'
       }
   }
   return gameState

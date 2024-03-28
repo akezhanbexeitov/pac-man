@@ -30,14 +30,17 @@ const HomePage = () => {
     pauseFor: 3000,
   }
   const handleStart = () => {
-    setLoading(true);
-    setTimeout(()=>navigate(ROUTES.GAME), 3000);
+    setLoading(true)
+    setTimeout(() => {
+      setLoading(false)
+      navigate(ROUTES.GAME)
+    }, 4100)
   }
   //todo перенести в HOC компонент для авторизации
   const dispatch: AppDispatch = useDispatch()
   const { getMe } = AuthService()
   const userAuth = useSelector(isAuth)
-
+  
   useEffect(() => {
     if (!userAuth) {
       (async function() {
@@ -52,8 +55,8 @@ const HomePage = () => {
         }
       })()
     }
-  }, []);
-
+  }, [])
+  
   return (
     <div className={styles.wrapper}>
       {loading ?

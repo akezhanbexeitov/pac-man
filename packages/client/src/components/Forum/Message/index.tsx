@@ -1,4 +1,4 @@
-import React, { FC, forwardRef } from 'react'
+import React, { forwardRef } from 'react'
 import styles from './index.module.scss'
 import { TComment } from '@/typings/types'
 import { Comment, CommentCreate } from '@/components'

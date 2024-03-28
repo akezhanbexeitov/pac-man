@@ -16,7 +16,17 @@ export function gameRenderingCycle(
   interval = FRAMES_PER_MS
 ) {
   let startTime = 0
-
+  const backgroundMusic = new Audio('/src/assets/sounds/game-over.mp3')
+  
+  const playBackgroundMusic = () => {
+    backgroundMusic.volume = 0.4 // Установка громкости
+    backgroundMusic.loop = true // Повторение музыки
+    backgroundMusic.play()
+    setTimeout(() => {
+      backgroundMusic.pause(); // Приостановить воспроизведение музыки
+    }, 1600);
+  }
+  
   function sceneTimer(timeStamp = 0) {
     const deltaTime = timeStamp - startTime
     const rendering = requestAnimationFrame(sceneTimer)
@@ -25,6 +35,7 @@ export function gameRenderingCycle(
       const currentState = getState()
       if (currentState.isWinGame || currentState.isGameOver) {
         cancelAnimationFrame(rendering)
+        playBackgroundMusic()
       }
       startTime = timeStamp
       fns.forEach(i => i(ctx, currentState))

@@ -30,6 +30,7 @@ export const initGame = (canvas: HTMLCanvasElement) => {
     score: 0,
     isWinGame: false,
     isGameOver: false,
+    direction: "LEFT",
   })
   const renderFns = [clearScene, renderPacMan, renderPellets, renderGhosts]
   const sceneTimer = gameRenderingCycle(renderFns, ctx, getGameState)
