@@ -53,8 +53,7 @@ export const setInitState = (state: IState) => {
 }
 
 export const setPause = () => {
-  const pause = gameState.isPause
-  gameState.isPause = !pause
+  gameState.isPause = !gameState.isPause
 }
 
 export const getGameState = () => {

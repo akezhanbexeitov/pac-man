@@ -18,3 +18,8 @@ export enum Direction {
   Left = 'left',
   Right = 'right',
 }
+
+export enum GameResult {
+  win,
+  over,
+}

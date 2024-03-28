@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom'
 import { user } from '@/store/selectors/authUserSelectors'
 import { useSelector } from 'react-redux'
 import { setPause } from './state/state'
+import { GameResult } from './models'
 
 const Game = () => {
   const userInfo = useSelector(user)
@@ -20,19 +21,19 @@ const Game = () => {
   const navigate = useNavigate()
 
   const [showModal, setShowModal] = useState(false)
-  const [result, setResult] = useState('')
+  const [result, setResult] = useState<GameResult | null>(null)
   const [isPause, setIsPause] = useState(false)
 
   const gameOverObserver = useMemo(() => {
     return new MutationObserver(() => {
       setShowModal(true)
-      setResult('over')
+      setResult(GameResult.over)
     })
   }, [])
   const gameWinObserver = useMemo(() => {
     return new MutationObserver(() => {
       setShowModal(true)
-      setResult('win')
+      setResult(GameResult.win)
     })
   }, [])
 
@@ -73,14 +74,14 @@ const Game = () => {
         <Modal onClose={() => {}}>
           <div className={styles.game__modalWrapper}>
             <h1 className={styles.game__modalTitleTop}>
-              {result === 'over' ? 'Game over' : 'Victory'}
+              {result && result === GameResult.over ? 'Game over' : 'Victory'}
             </h1>
             <p
               className={
                 styles.game__modalScore
               }>{`Очки - ${scoreRef.current?.innerHTML}`}</p>
             <h3 className={styles.game__modalTitle}>
-              {result === 'over'
+              {result && result === GameResult.over
                 ? 'Одна ошибка - и ты ошибся'
                 : 'У тебя получилось. Поздравляем!'}
             </h3>
